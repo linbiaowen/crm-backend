@@ -33,7 +33,7 @@ spring:
       enabled: false
   data:
     mongodb:
-      uri: mongodb://localhost:27017
+      uri: mongodb://crmuser:abc123@mongo:27017
       database: crmweb
   mail:
     host: localhost
