@@ -37,8 +37,8 @@ spring:
       indent-output: true
   data:
     mongodb:
-      uri: mongodb://crmuser:abc123@mongo:27017
-      database: crmweb
+      uri: mongodb://localhost:27017
+      database: crmweb_v2
   mail:
     host: localhost
     port: 25
