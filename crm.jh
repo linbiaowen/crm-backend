@@ -595,6 +595,8 @@ entity Offer {
     offerExternalId String
     offerName String required
     offerNameChi String
+    offerDesc String
+    offerDescChi String
     offerType OfferType
     offerPrice BigDecimal
     tempCustomerSegments String // temp fields for create offer customerSegments durring offer creation. customerSegments : []
@@ -608,6 +610,7 @@ entity Offer {
     tempAdvancePaymentIds String // temp fields for create offer advancePayments durring offer creation. offerAdvancePayments : []
     tempPromoCodes String // temp fields for create offer offerPromotions durring offer creation. offerPromotions : []
     tempDiscountCodes String // temp fields for create offer offerDiscounts durring offer creation. offerDiscounts : []
+    tempImageIds String // temp fields for create offer Images durring offer creation. images : []
     limitedActivationPeriod Boolean
     allowedActivationStartDate Instant
     allowedActivationEndDate Instant
@@ -627,6 +630,23 @@ entity Offer {
     lastUpdatedDate Instant required
     lastUpdatedBy String required
     tenantId String required
+}
+
+entity Image {
+    imageId Long required
+    imageType ImageType
+    image ImageBlob
+    remark String
+    lockCount Integer
+    createdDate Instant required
+    createdBy String required
+    lastUpdatedDate Instant required
+    lastUpdatedBy String required
+    tenantId String required
+}
+
+enum ImageType {
+    APP, WEB
 }
 
 entity OfferCustomerSegment {
@@ -706,6 +726,7 @@ entity Product {
     tempDataIds String //temp fields to create ProductData array : productDatas : []
     tempSmsIds String //temp fields to create ProductSms array : productSmss : []
     tempMmsIds String //temp fields to create ProductMms array : productMmss : []
+    tempImageIds String // temp fields for create offer Images durring offer creation. images : []
     startDate Instant
     endDate Instant
     independentlyOrderable Boolean
@@ -1272,11 +1293,12 @@ relationship OneToMany {
     Offer{OfferAdvancePayment} to OfferAdvancePayment{offer},
     Offer{offerPromotions(promoCode)} to OfferPromotion{offer(offerId)},
     Offer{offerDiscounts(discountCode)} to OfferDiscount{offer(offerId)},
-    
+    Offer{images(imageId)} to Image{offer(offerId)},
     //ProductSpecification{cfsServiceSpec(serviceSpecId)} to CfsServiceSpec{productSpecification(productSpecId)},
 
     Product{deliveryOptions(deliveryOption)} to DeliveryOption{product(productId)},
     Product{resourceSpecifications(resourceSpecId)} to ResourceSpecification{product(productId)},
+    Product{images(imageId)} to Image{product(productId)},
     
 
     //CfsServiceSpec{resourceSpecifications(resourceSpecId)} to ResourceSpecification{cfsServiceSpec(serviceSpecId)},
@@ -1321,7 +1343,9 @@ service * with serviceClass
 // Set an angular suffix
 // angularSuffix * with mySuffix
 
+//crm-frontend
 skipClient *
 //skipServer *
 
+//jhipster import-jdl ../crm-backend/crm.jh --force
 

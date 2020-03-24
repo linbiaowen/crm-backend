@@ -123,6 +123,7 @@ class ProductGatlingTest extends Simulation {
                 , "tempDataIds":"SAMPLE_TEXT"
                 , "tempSmsIds":"SAMPLE_TEXT"
                 , "tempMmsIds":"SAMPLE_TEXT"
+                , "tempImageIds":"SAMPLE_TEXT"
                 , "startDate":"2020-01-01T00:00:00.000Z"
                 , "endDate":"2020-01-01T00:00:00.000Z"
                 , "independentlyOrderable":null

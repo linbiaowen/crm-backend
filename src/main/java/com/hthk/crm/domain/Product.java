@@ -108,6 +108,9 @@ public class Product implements Serializable {
     @Field("temp_mms_ids")
     private String tempMmsIds;
 
+    @Field("temp_image_ids")
+    private String tempImageIds;
+
     @Field("start_date")
     private Instant startDate;
 
@@ -146,33 +149,37 @@ public class Product implements Serializable {
     @Field("tenant_id")
     private String tenantId;
 
-    @DBRef
+    //@DBRef
     @Field("productVoice")
     private ProductVoice productVoice;
 
-    @DBRef
+    //@DBRef
     @Field("productData")
     private ProductData productData;
 
-    @DBRef
+    //@DBRef
     @Field("productSms")
     private ProductSms productSms;
 
-    @DBRef
+    //@DBRef
     @Field("productMms")
     private ProductMms productMms;
 
-    @DBRef
+    //@DBRef
     @Field("cfsService")
     private CfsService cfsService;
 
-    @DBRef
+    //@DBRef
     @Field("deliveryOptions")
     private Set<DeliveryOption> deliveryOptions = new HashSet<>();
 
-    @DBRef
+    //@DBRef
     @Field("resourceSpecifications")
     private Set<ResourceSpecification> resourceSpecifications = new HashSet<>();
+
+    //@DBRef
+    @Field("images")
+    private Set<Image> images = new HashSet<>();
 
     @DBRef
     @Field("offer")
@@ -474,6 +481,19 @@ public class Product implements Serializable {
         this.tempMmsIds = tempMmsIds;
     }
 
+    public String getTempImageIds() {
+        return tempImageIds;
+    }
+
+    public Product tempImageIds(String tempImageIds) {
+        this.tempImageIds = tempImageIds;
+        return this;
+    }
+
+    public void setTempImageIds(String tempImageIds) {
+        this.tempImageIds = tempImageIds;
+    }
+
     public Instant getStartDate() {
         return startDate;
     }
@@ -732,6 +752,31 @@ public class Product implements Serializable {
         this.resourceSpecifications = resourceSpecifications;
     }
 
+    public Set<Image> getImages() {
+        return images;
+    }
+
+    public Product images(Set<Image> images) {
+        this.images = images;
+        return this;
+    }
+
+    public Product addImages(Image image) {
+        this.images.add(image);
+        image.setProduct(this);
+        return this;
+    }
+
+    public Product removeImages(Image image) {
+        this.images.remove(image);
+        image.setProduct(null);
+        return this;
+    }
+
+    public void setImages(Set<Image> images) {
+        this.images = images;
+    }
+
     public Offer getOffer() {
         return offer;
     }
@@ -788,6 +833,7 @@ public class Product implements Serializable {
             ", tempDataIds='" + getTempDataIds() + "'" +
             ", tempSmsIds='" + getTempSmsIds() + "'" +
             ", tempMmsIds='" + getTempMmsIds() + "'" +
+            ", tempImageIds='" + getTempImageIds() + "'" +
             ", startDate='" + getStartDate() + "'" +
             ", endDate='" + getEndDate() + "'" +
             ", independentlyOrderable='" + isIndependentlyOrderable() + "'" +

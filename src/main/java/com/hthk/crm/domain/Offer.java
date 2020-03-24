@@ -41,6 +41,12 @@ public class Offer implements Serializable {
     @Field("offer_name_chi")
     private String offerNameChi;
 
+    @Field("offer_desc")
+    private String offerDesc;
+
+    @Field("offer_desc_chi")
+    private String offerDescChi;
+
     @Field("offer_type")
     private OfferType offerType;
 
@@ -76,6 +82,9 @@ public class Offer implements Serializable {
 
     @Field("temp_discount_codes")
     private String tempDiscountCodes;
+
+    @Field("temp_image_ids")
+    private String tempImageIds;
 
     @Field("limited_activation_period")
     private Boolean limitedActivationPeriod;
@@ -139,33 +148,37 @@ public class Offer implements Serializable {
     @Field("tenant_id")
     private String tenantId;
 
-    @DBRef
+    //@DBRef
     @Field("customerSegments")
     private Set<OfferCustomerSegment> customerSegments = new HashSet<>();
 
-    @DBRef
+    //@DBRef
     @Field("customerClasses")
     private Set<OfferCustomerClass> customerClasses = new HashSet<>();
 
-    @DBRef
+    //@DBRef
     @Field("salesChannels")
     private Set<OfferSalesChannel> salesChannels = new HashSet<>();
 
-    @DBRef
+    //@DBRef
     @Field("products")
     private Set<Product> products = new HashSet<>();
 
-    @DBRef
+    //@DBRef
     @Field("offerAdvancePayment")
     private Set<OfferAdvancePayment> offerAdvancePayments = new HashSet<>();
 
-    @DBRef
+    //@DBRef
     @Field("offerPromotions")
     private Set<OfferPromotion> offerPromotions = new HashSet<>();
 
-    @DBRef
+    //@DBRef
     @Field("offerDiscounts")
     private Set<OfferDiscount> offerDiscounts = new HashSet<>();
+
+    //@DBRef
+    @Field("images")
+    private Set<Image> images = new HashSet<>();
 
     @DBRef
     @Field("parentOffers")
@@ -235,6 +248,32 @@ public class Offer implements Serializable {
 
     public void setOfferNameChi(String offerNameChi) {
         this.offerNameChi = offerNameChi;
+    }
+
+    public String getOfferDesc() {
+        return offerDesc;
+    }
+
+    public Offer offerDesc(String offerDesc) {
+        this.offerDesc = offerDesc;
+        return this;
+    }
+
+    public void setOfferDesc(String offerDesc) {
+        this.offerDesc = offerDesc;
+    }
+
+    public String getOfferDescChi() {
+        return offerDescChi;
+    }
+
+    public Offer offerDescChi(String offerDescChi) {
+        this.offerDescChi = offerDescChi;
+        return this;
+    }
+
+    public void setOfferDescChi(String offerDescChi) {
+        this.offerDescChi = offerDescChi;
     }
 
     public OfferType getOfferType() {
@@ -391,6 +430,19 @@ public class Offer implements Serializable {
 
     public void setTempDiscountCodes(String tempDiscountCodes) {
         this.tempDiscountCodes = tempDiscountCodes;
+    }
+
+    public String getTempImageIds() {
+        return tempImageIds;
+    }
+
+    public Offer tempImageIds(String tempImageIds) {
+        this.tempImageIds = tempImageIds;
+        return this;
+    }
+
+    public void setTempImageIds(String tempImageIds) {
+        this.tempImageIds = tempImageIds;
     }
 
     public Boolean isLimitedActivationPeriod() {
@@ -815,6 +867,31 @@ public class Offer implements Serializable {
         this.offerDiscounts = offerDiscounts;
     }
 
+    public Set<Image> getImages() {
+        return images;
+    }
+
+    public Offer images(Set<Image> images) {
+        this.images = images;
+        return this;
+    }
+
+    public Offer addImages(Image image) {
+        this.images.add(image);
+        image.setOffer(this);
+        return this;
+    }
+
+    public Offer removeImages(Image image) {
+        this.images.remove(image);
+        image.setOffer(null);
+        return this;
+    }
+
+    public void setImages(Set<Image> images) {
+        this.images = images;
+    }
+
     public Set<Offer> getParentOffers() {
         return parentOffers;
     }
@@ -890,6 +967,8 @@ public class Offer implements Serializable {
             ", offerExternalId='" + getOfferExternalId() + "'" +
             ", offerName='" + getOfferName() + "'" +
             ", offerNameChi='" + getOfferNameChi() + "'" +
+            ", offerDesc='" + getOfferDesc() + "'" +
+            ", offerDescChi='" + getOfferDescChi() + "'" +
             ", offerType='" + getOfferType() + "'" +
             ", offerPrice=" + getOfferPrice() +
             ", tempCustomerSegments='" + getTempCustomerSegments() + "'" +
@@ -902,6 +981,7 @@ public class Offer implements Serializable {
             ", tempAdvancePaymentIds='" + getTempAdvancePaymentIds() + "'" +
             ", tempPromoCodes='" + getTempPromoCodes() + "'" +
             ", tempDiscountCodes='" + getTempDiscountCodes() + "'" +
+            ", tempImageIds='" + getTempImageIds() + "'" +
             ", limitedActivationPeriod='" + isLimitedActivationPeriod() + "'" +
             ", allowedActivationStartDate='" + getAllowedActivationStartDate() + "'" +
             ", allowedActivationEndDate='" + getAllowedActivationEndDate() + "'" +

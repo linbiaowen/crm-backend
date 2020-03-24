@@ -7,9 +7,9 @@ import org.slf4j.LoggerFactory
 import scala.concurrent.duration._
 
 /**
- * Performance test for the Offer entity.
+ * Performance test for the Image entity.
  */
-class OfferGatlingTest extends Simulation {
+class ImageGatlingTest extends Simulation {
 
     val context: LoggerContext = LoggerFactory.getILoggerFactory.asInstanceOf[LoggerContext]
     // Log all HTTP requests
@@ -45,7 +45,7 @@ class OfferGatlingTest extends Simulation {
         "Upgrade-Insecure-Requests" -> "1"
     )
 
-    val scn = scenario("Test the Offer entity")
+    val scn = scenario("Test the Image entity")
         .exec(http("First unauthenticated request")
         .get("/api/account")
         .headers(headers_http)
@@ -91,48 +91,20 @@ class OfferGatlingTest extends Simulation {
         .check(status.is(200)))
         .pause(10)
         .repeat(2) {
-            exec(http("Get all offers")
-            .get("/api/offers")
+            exec(http("Get all images")
+            .get("/api/images")
             .headers(headers_http_authenticated)
             .check(status.is(200)))
             .pause(10 seconds, 20 seconds)
-            .exec(http("Create new offer")
-            .post("/api/offers")
+            .exec(http("Create new image")
+            .post("/api/images")
             .headers(headers_http_authenticated)
             .body(StringBody("""{
                 "id":null
-                , "offerId":"SAMPLE_TEXT"
-                , "offerExternalId":"SAMPLE_TEXT"
-                , "offerName":"SAMPLE_TEXT"
-                , "offerNameChi":"SAMPLE_TEXT"
-                , "offerDesc":"SAMPLE_TEXT"
-                , "offerDescChi":"SAMPLE_TEXT"
-                , "offerType":"BASE"
-                , "offerPrice":"0"
-                , "tempCustomerSegments":"SAMPLE_TEXT"
-                , "tempCustomerClasses":"SAMPLE_TEXT"
-                , "tempSalesChannels":"SAMPLE_TEXT"
-                , "startDate":"2020-01-01T00:00:00.000Z"
-                , "endDate":"2020-01-01T00:00:00.000Z"
-                , "tempChildOfferIds":"SAMPLE_TEXT"
-                , "tempProductIds":"SAMPLE_TEXT"
-                , "tempAdvancePaymentIds":"SAMPLE_TEXT"
-                , "tempPromoCodes":"SAMPLE_TEXT"
-                , "tempDiscountCodes":"SAMPLE_TEXT"
-                , "tempImageIds":"SAMPLE_TEXT"
-                , "limitedActivationPeriod":null
-                , "allowedActivationStartDate":"2020-01-01T00:00:00.000Z"
-                , "allowedActivationEndDate":"2020-01-01T00:00:00.000Z"
-                , "isGroupSharingOffer":null
-                , "isMnpOffer":null
-                , "autoRenewal":null
-                , "transferAllowed":null
-                , "infoSharingAllowed":null
-                , "infoSharingOptions":"SAMPLE_TEXT"
-                , "offerPeriod":"0"
-                , "offerPeriodTerm":"SAMPLE_TEXT"
-                , "paymentType":"SAMPLE_TEXT"
-                , "priority":"0"
+                , "imageId":null
+                , "imageType":"APP"
+                , "image":null
+                , "remark":"SAMPLE_TEXT"
                 , "lockCount":"0"
                 , "createdDate":"2020-01-01T00:00:00.000Z"
                 , "createdBy":"SAMPLE_TEXT"
@@ -141,16 +113,16 @@ class OfferGatlingTest extends Simulation {
                 , "tenantId":"SAMPLE_TEXT"
                 }""")).asJson
             .check(status.is(201))
-            .check(headerRegex("Location", "(.*)").saveAs("new_offer_url"))).exitHereIfFailed
+            .check(headerRegex("Location", "(.*)").saveAs("new_image_url"))).exitHereIfFailed
             .pause(10)
             .repeat(5) {
-                exec(http("Get created offer")
-                .get("${new_offer_url}")
+                exec(http("Get created image")
+                .get("${new_image_url}")
                 .headers(headers_http_authenticated))
                 .pause(10)
             }
-            .exec(http("Delete created offer")
-            .delete("${new_offer_url}")
+            .exec(http("Delete created image")
+            .delete("${new_image_url}")
             .headers(headers_http_authenticated))
             .pause(10)
         }

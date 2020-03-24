@@ -55,6 +55,12 @@ public class OfferResourceIT {
     private static final String DEFAULT_OFFER_NAME_CHI = "AAAAAAAAAA";
     private static final String UPDATED_OFFER_NAME_CHI = "BBBBBBBBBB";
 
+    private static final String DEFAULT_OFFER_DESC = "AAAAAAAAAA";
+    private static final String UPDATED_OFFER_DESC = "BBBBBBBBBB";
+
+    private static final String DEFAULT_OFFER_DESC_CHI = "AAAAAAAAAA";
+    private static final String UPDATED_OFFER_DESC_CHI = "BBBBBBBBBB";
+
     private static final OfferType DEFAULT_OFFER_TYPE = OfferType.BASE;
     private static final OfferType UPDATED_OFFER_TYPE = OfferType.ADDON;
 
@@ -90,6 +96,9 @@ public class OfferResourceIT {
 
     private static final String DEFAULT_TEMP_DISCOUNT_CODES = "AAAAAAAAAA";
     private static final String UPDATED_TEMP_DISCOUNT_CODES = "BBBBBBBBBB";
+
+    private static final String DEFAULT_TEMP_IMAGE_IDS = "AAAAAAAAAA";
+    private static final String UPDATED_TEMP_IMAGE_IDS = "BBBBBBBBBB";
 
     private static final Boolean DEFAULT_LIMITED_ACTIVATION_PERIOD = false;
     private static final Boolean UPDATED_LIMITED_ACTIVATION_PERIOD = true;
@@ -177,6 +186,8 @@ public class OfferResourceIT {
             .offerExternalId(DEFAULT_OFFER_EXTERNAL_ID)
             .offerName(DEFAULT_OFFER_NAME)
             .offerNameChi(DEFAULT_OFFER_NAME_CHI)
+            .offerDesc(DEFAULT_OFFER_DESC)
+            .offerDescChi(DEFAULT_OFFER_DESC_CHI)
             .offerType(DEFAULT_OFFER_TYPE)
             .offerPrice(DEFAULT_OFFER_PRICE)
             .tempCustomerSegments(DEFAULT_TEMP_CUSTOMER_SEGMENTS)
@@ -189,6 +200,7 @@ public class OfferResourceIT {
             .tempAdvancePaymentIds(DEFAULT_TEMP_ADVANCE_PAYMENT_IDS)
             .tempPromoCodes(DEFAULT_TEMP_PROMO_CODES)
             .tempDiscountCodes(DEFAULT_TEMP_DISCOUNT_CODES)
+            .tempImageIds(DEFAULT_TEMP_IMAGE_IDS)
             .limitedActivationPeriod(DEFAULT_LIMITED_ACTIVATION_PERIOD)
             .allowedActivationStartDate(DEFAULT_ALLOWED_ACTIVATION_START_DATE)
             .allowedActivationEndDate(DEFAULT_ALLOWED_ACTIVATION_END_DATE)
@@ -222,6 +234,8 @@ public class OfferResourceIT {
             .offerExternalId(UPDATED_OFFER_EXTERNAL_ID)
             .offerName(UPDATED_OFFER_NAME)
             .offerNameChi(UPDATED_OFFER_NAME_CHI)
+            .offerDesc(UPDATED_OFFER_DESC)
+            .offerDescChi(UPDATED_OFFER_DESC_CHI)
             .offerType(UPDATED_OFFER_TYPE)
             .offerPrice(UPDATED_OFFER_PRICE)
             .tempCustomerSegments(UPDATED_TEMP_CUSTOMER_SEGMENTS)
@@ -234,6 +248,7 @@ public class OfferResourceIT {
             .tempAdvancePaymentIds(UPDATED_TEMP_ADVANCE_PAYMENT_IDS)
             .tempPromoCodes(UPDATED_TEMP_PROMO_CODES)
             .tempDiscountCodes(UPDATED_TEMP_DISCOUNT_CODES)
+            .tempImageIds(UPDATED_TEMP_IMAGE_IDS)
             .limitedActivationPeriod(UPDATED_LIMITED_ACTIVATION_PERIOD)
             .allowedActivationStartDate(UPDATED_ALLOWED_ACTIVATION_START_DATE)
             .allowedActivationEndDate(UPDATED_ALLOWED_ACTIVATION_END_DATE)
@@ -280,6 +295,8 @@ public class OfferResourceIT {
         assertThat(testOffer.getOfferExternalId()).isEqualTo(DEFAULT_OFFER_EXTERNAL_ID);
         assertThat(testOffer.getOfferName()).isEqualTo(DEFAULT_OFFER_NAME);
         assertThat(testOffer.getOfferNameChi()).isEqualTo(DEFAULT_OFFER_NAME_CHI);
+        assertThat(testOffer.getOfferDesc()).isEqualTo(DEFAULT_OFFER_DESC);
+        assertThat(testOffer.getOfferDescChi()).isEqualTo(DEFAULT_OFFER_DESC_CHI);
         assertThat(testOffer.getOfferType()).isEqualTo(DEFAULT_OFFER_TYPE);
         assertThat(testOffer.getOfferPrice()).isEqualTo(DEFAULT_OFFER_PRICE);
         assertThat(testOffer.getTempCustomerSegments()).isEqualTo(DEFAULT_TEMP_CUSTOMER_SEGMENTS);
@@ -292,6 +309,7 @@ public class OfferResourceIT {
         assertThat(testOffer.getTempAdvancePaymentIds()).isEqualTo(DEFAULT_TEMP_ADVANCE_PAYMENT_IDS);
         assertThat(testOffer.getTempPromoCodes()).isEqualTo(DEFAULT_TEMP_PROMO_CODES);
         assertThat(testOffer.getTempDiscountCodes()).isEqualTo(DEFAULT_TEMP_DISCOUNT_CODES);
+        assertThat(testOffer.getTempImageIds()).isEqualTo(DEFAULT_TEMP_IMAGE_IDS);
         assertThat(testOffer.isLimitedActivationPeriod()).isEqualTo(DEFAULT_LIMITED_ACTIVATION_PERIOD);
         assertThat(testOffer.getAllowedActivationStartDate()).isEqualTo(DEFAULT_ALLOWED_ACTIVATION_START_DATE);
         assertThat(testOffer.getAllowedActivationEndDate()).isEqualTo(DEFAULT_ALLOWED_ACTIVATION_END_DATE);
@@ -465,6 +483,8 @@ public class OfferResourceIT {
             .andExpect(jsonPath("$.[*].offerExternalId").value(hasItem(DEFAULT_OFFER_EXTERNAL_ID)))
             .andExpect(jsonPath("$.[*].offerName").value(hasItem(DEFAULT_OFFER_NAME)))
             .andExpect(jsonPath("$.[*].offerNameChi").value(hasItem(DEFAULT_OFFER_NAME_CHI)))
+            .andExpect(jsonPath("$.[*].offerDesc").value(hasItem(DEFAULT_OFFER_DESC)))
+            .andExpect(jsonPath("$.[*].offerDescChi").value(hasItem(DEFAULT_OFFER_DESC_CHI)))
             .andExpect(jsonPath("$.[*].offerType").value(hasItem(DEFAULT_OFFER_TYPE.toString())))
             .andExpect(jsonPath("$.[*].offerPrice").value(hasItem(DEFAULT_OFFER_PRICE.intValue())))
             .andExpect(jsonPath("$.[*].tempCustomerSegments").value(hasItem(DEFAULT_TEMP_CUSTOMER_SEGMENTS)))
@@ -477,6 +497,7 @@ public class OfferResourceIT {
             .andExpect(jsonPath("$.[*].tempAdvancePaymentIds").value(hasItem(DEFAULT_TEMP_ADVANCE_PAYMENT_IDS)))
             .andExpect(jsonPath("$.[*].tempPromoCodes").value(hasItem(DEFAULT_TEMP_PROMO_CODES)))
             .andExpect(jsonPath("$.[*].tempDiscountCodes").value(hasItem(DEFAULT_TEMP_DISCOUNT_CODES)))
+            .andExpect(jsonPath("$.[*].tempImageIds").value(hasItem(DEFAULT_TEMP_IMAGE_IDS)))
             .andExpect(jsonPath("$.[*].limitedActivationPeriod").value(hasItem(DEFAULT_LIMITED_ACTIVATION_PERIOD.booleanValue())))
             .andExpect(jsonPath("$.[*].allowedActivationStartDate").value(hasItem(DEFAULT_ALLOWED_ACTIVATION_START_DATE.toString())))
             .andExpect(jsonPath("$.[*].allowedActivationEndDate").value(hasItem(DEFAULT_ALLOWED_ACTIVATION_END_DATE.toString())))
@@ -532,6 +553,8 @@ public class OfferResourceIT {
             .andExpect(jsonPath("$.offerExternalId").value(DEFAULT_OFFER_EXTERNAL_ID))
             .andExpect(jsonPath("$.offerName").value(DEFAULT_OFFER_NAME))
             .andExpect(jsonPath("$.offerNameChi").value(DEFAULT_OFFER_NAME_CHI))
+            .andExpect(jsonPath("$.offerDesc").value(DEFAULT_OFFER_DESC))
+            .andExpect(jsonPath("$.offerDescChi").value(DEFAULT_OFFER_DESC_CHI))
             .andExpect(jsonPath("$.offerType").value(DEFAULT_OFFER_TYPE.toString()))
             .andExpect(jsonPath("$.offerPrice").value(DEFAULT_OFFER_PRICE.intValue()))
             .andExpect(jsonPath("$.tempCustomerSegments").value(DEFAULT_TEMP_CUSTOMER_SEGMENTS))
@@ -544,6 +567,7 @@ public class OfferResourceIT {
             .andExpect(jsonPath("$.tempAdvancePaymentIds").value(DEFAULT_TEMP_ADVANCE_PAYMENT_IDS))
             .andExpect(jsonPath("$.tempPromoCodes").value(DEFAULT_TEMP_PROMO_CODES))
             .andExpect(jsonPath("$.tempDiscountCodes").value(DEFAULT_TEMP_DISCOUNT_CODES))
+            .andExpect(jsonPath("$.tempImageIds").value(DEFAULT_TEMP_IMAGE_IDS))
             .andExpect(jsonPath("$.limitedActivationPeriod").value(DEFAULT_LIMITED_ACTIVATION_PERIOD.booleanValue()))
             .andExpect(jsonPath("$.allowedActivationStartDate").value(DEFAULT_ALLOWED_ACTIVATION_START_DATE.toString()))
             .andExpect(jsonPath("$.allowedActivationEndDate").value(DEFAULT_ALLOWED_ACTIVATION_END_DATE.toString()))
@@ -586,6 +610,8 @@ public class OfferResourceIT {
             .offerExternalId(UPDATED_OFFER_EXTERNAL_ID)
             .offerName(UPDATED_OFFER_NAME)
             .offerNameChi(UPDATED_OFFER_NAME_CHI)
+            .offerDesc(UPDATED_OFFER_DESC)
+            .offerDescChi(UPDATED_OFFER_DESC_CHI)
             .offerType(UPDATED_OFFER_TYPE)
             .offerPrice(UPDATED_OFFER_PRICE)
             .tempCustomerSegments(UPDATED_TEMP_CUSTOMER_SEGMENTS)
@@ -598,6 +624,7 @@ public class OfferResourceIT {
             .tempAdvancePaymentIds(UPDATED_TEMP_ADVANCE_PAYMENT_IDS)
             .tempPromoCodes(UPDATED_TEMP_PROMO_CODES)
             .tempDiscountCodes(UPDATED_TEMP_DISCOUNT_CODES)
+            .tempImageIds(UPDATED_TEMP_IMAGE_IDS)
             .limitedActivationPeriod(UPDATED_LIMITED_ACTIVATION_PERIOD)
             .allowedActivationStartDate(UPDATED_ALLOWED_ACTIVATION_START_DATE)
             .allowedActivationEndDate(UPDATED_ALLOWED_ACTIVATION_END_DATE)
@@ -631,6 +658,8 @@ public class OfferResourceIT {
         assertThat(testOffer.getOfferExternalId()).isEqualTo(UPDATED_OFFER_EXTERNAL_ID);
         assertThat(testOffer.getOfferName()).isEqualTo(UPDATED_OFFER_NAME);
         assertThat(testOffer.getOfferNameChi()).isEqualTo(UPDATED_OFFER_NAME_CHI);
+        assertThat(testOffer.getOfferDesc()).isEqualTo(UPDATED_OFFER_DESC);
+        assertThat(testOffer.getOfferDescChi()).isEqualTo(UPDATED_OFFER_DESC_CHI);
         assertThat(testOffer.getOfferType()).isEqualTo(UPDATED_OFFER_TYPE);
         assertThat(testOffer.getOfferPrice()).isEqualTo(UPDATED_OFFER_PRICE);
         assertThat(testOffer.getTempCustomerSegments()).isEqualTo(UPDATED_TEMP_CUSTOMER_SEGMENTS);
@@ -643,6 +672,7 @@ public class OfferResourceIT {
         assertThat(testOffer.getTempAdvancePaymentIds()).isEqualTo(UPDATED_TEMP_ADVANCE_PAYMENT_IDS);
         assertThat(testOffer.getTempPromoCodes()).isEqualTo(UPDATED_TEMP_PROMO_CODES);
         assertThat(testOffer.getTempDiscountCodes()).isEqualTo(UPDATED_TEMP_DISCOUNT_CODES);
+        assertThat(testOffer.getTempImageIds()).isEqualTo(UPDATED_TEMP_IMAGE_IDS);
         assertThat(testOffer.isLimitedActivationPeriod()).isEqualTo(UPDATED_LIMITED_ACTIVATION_PERIOD);
         assertThat(testOffer.getAllowedActivationStartDate()).isEqualTo(UPDATED_ALLOWED_ACTIVATION_START_DATE);
         assertThat(testOffer.getAllowedActivationEndDate()).isEqualTo(UPDATED_ALLOWED_ACTIVATION_END_DATE);

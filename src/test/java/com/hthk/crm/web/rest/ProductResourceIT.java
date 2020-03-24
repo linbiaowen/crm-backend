@@ -108,6 +108,9 @@ public class ProductResourceIT {
     private static final String DEFAULT_TEMP_MMS_IDS = "AAAAAAAAAA";
     private static final String UPDATED_TEMP_MMS_IDS = "BBBBBBBBBB";
 
+    private static final String DEFAULT_TEMP_IMAGE_IDS = "AAAAAAAAAA";
+    private static final String UPDATED_TEMP_IMAGE_IDS = "BBBBBBBBBB";
+
     private static final Instant DEFAULT_START_DATE = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_START_DATE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
@@ -182,6 +185,7 @@ public class ProductResourceIT {
             .tempDataIds(DEFAULT_TEMP_DATA_IDS)
             .tempSmsIds(DEFAULT_TEMP_SMS_IDS)
             .tempMmsIds(DEFAULT_TEMP_MMS_IDS)
+            .tempImageIds(DEFAULT_TEMP_IMAGE_IDS)
             .startDate(DEFAULT_START_DATE)
             .endDate(DEFAULT_END_DATE)
             .independentlyOrderable(DEFAULT_INDEPENDENTLY_ORDERABLE)
@@ -225,6 +229,7 @@ public class ProductResourceIT {
             .tempDataIds(UPDATED_TEMP_DATA_IDS)
             .tempSmsIds(UPDATED_TEMP_SMS_IDS)
             .tempMmsIds(UPDATED_TEMP_MMS_IDS)
+            .tempImageIds(UPDATED_TEMP_IMAGE_IDS)
             .startDate(UPDATED_START_DATE)
             .endDate(UPDATED_END_DATE)
             .independentlyOrderable(UPDATED_INDEPENDENTLY_ORDERABLE)
@@ -281,6 +286,7 @@ public class ProductResourceIT {
         assertThat(testProduct.getTempDataIds()).isEqualTo(DEFAULT_TEMP_DATA_IDS);
         assertThat(testProduct.getTempSmsIds()).isEqualTo(DEFAULT_TEMP_SMS_IDS);
         assertThat(testProduct.getTempMmsIds()).isEqualTo(DEFAULT_TEMP_MMS_IDS);
+        assertThat(testProduct.getTempImageIds()).isEqualTo(DEFAULT_TEMP_IMAGE_IDS);
         assertThat(testProduct.getStartDate()).isEqualTo(DEFAULT_START_DATE);
         assertThat(testProduct.getEndDate()).isEqualTo(DEFAULT_END_DATE);
         assertThat(testProduct.isIndependentlyOrderable()).isEqualTo(DEFAULT_INDEPENDENTLY_ORDERABLE);
@@ -464,6 +470,7 @@ public class ProductResourceIT {
             .andExpect(jsonPath("$.[*].tempDataIds").value(hasItem(DEFAULT_TEMP_DATA_IDS)))
             .andExpect(jsonPath("$.[*].tempSmsIds").value(hasItem(DEFAULT_TEMP_SMS_IDS)))
             .andExpect(jsonPath("$.[*].tempMmsIds").value(hasItem(DEFAULT_TEMP_MMS_IDS)))
+            .andExpect(jsonPath("$.[*].tempImageIds").value(hasItem(DEFAULT_TEMP_IMAGE_IDS)))
             .andExpect(jsonPath("$.[*].startDate").value(hasItem(DEFAULT_START_DATE.toString())))
             .andExpect(jsonPath("$.[*].endDate").value(hasItem(DEFAULT_END_DATE.toString())))
             .andExpect(jsonPath("$.[*].independentlyOrderable").value(hasItem(DEFAULT_INDEPENDENTLY_ORDERABLE.booleanValue())))
@@ -509,6 +516,7 @@ public class ProductResourceIT {
             .andExpect(jsonPath("$.tempDataIds").value(DEFAULT_TEMP_DATA_IDS))
             .andExpect(jsonPath("$.tempSmsIds").value(DEFAULT_TEMP_SMS_IDS))
             .andExpect(jsonPath("$.tempMmsIds").value(DEFAULT_TEMP_MMS_IDS))
+            .andExpect(jsonPath("$.tempImageIds").value(DEFAULT_TEMP_IMAGE_IDS))
             .andExpect(jsonPath("$.startDate").value(DEFAULT_START_DATE.toString()))
             .andExpect(jsonPath("$.endDate").value(DEFAULT_END_DATE.toString()))
             .andExpect(jsonPath("$.independentlyOrderable").value(DEFAULT_INDEPENDENTLY_ORDERABLE.booleanValue()))
@@ -561,6 +569,7 @@ public class ProductResourceIT {
             .tempDataIds(UPDATED_TEMP_DATA_IDS)
             .tempSmsIds(UPDATED_TEMP_SMS_IDS)
             .tempMmsIds(UPDATED_TEMP_MMS_IDS)
+            .tempImageIds(UPDATED_TEMP_IMAGE_IDS)
             .startDate(UPDATED_START_DATE)
             .endDate(UPDATED_END_DATE)
             .independentlyOrderable(UPDATED_INDEPENDENTLY_ORDERABLE)
@@ -604,6 +613,7 @@ public class ProductResourceIT {
         assertThat(testProduct.getTempDataIds()).isEqualTo(UPDATED_TEMP_DATA_IDS);
         assertThat(testProduct.getTempSmsIds()).isEqualTo(UPDATED_TEMP_SMS_IDS);
         assertThat(testProduct.getTempMmsIds()).isEqualTo(UPDATED_TEMP_MMS_IDS);
+        assertThat(testProduct.getTempImageIds()).isEqualTo(UPDATED_TEMP_IMAGE_IDS);
         assertThat(testProduct.getStartDate()).isEqualTo(UPDATED_START_DATE);
         assertThat(testProduct.getEndDate()).isEqualTo(UPDATED_END_DATE);
         assertThat(testProduct.isIndependentlyOrderable()).isEqualTo(UPDATED_INDEPENDENTLY_ORDERABLE);
