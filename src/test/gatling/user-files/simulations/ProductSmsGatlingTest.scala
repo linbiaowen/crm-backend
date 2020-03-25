@@ -102,7 +102,7 @@ class ProductSmsGatlingTest extends Simulation {
             .body(StringBody("""{
                 "id":null
                 , "smsId":"SAMPLE_TEXT"
-                , "productSpecId":null
+                , "productId":"SAMPLE_TEXT"
                 , "unit":"SAMPLE_TEXT"
                 , "volume":"0"
                 , "smsType":"LOCAL"

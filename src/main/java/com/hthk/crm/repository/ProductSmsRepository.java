@@ -12,7 +12,4 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface ProductSmsRepository extends MongoRepository<ProductSms, String> {
-
-    @Query("{ sms_id : ?0 }")
-	ProductSms findBySmsId(String tempSmsIds);
 }

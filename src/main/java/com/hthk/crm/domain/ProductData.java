@@ -23,12 +23,12 @@ public class ProductData implements Serializable {
     @Id
     private String id;
 
+    @NotNull
     @Field("data_id")
     private String dataId;
 
-    @NotNull
-    @Field("product_spec_id")
-    private Long productSpecId;
+    @Field("product_id")
+    private String productId;
 
     @NotNull
     @Field("unit")
@@ -136,17 +136,17 @@ public class ProductData implements Serializable {
         this.dataId = dataId;
     }
 
-    public Long getProductSpecId() {
-        return productSpecId;
+    public String getProductId() {
+        return productId;
     }
 
-    public ProductData productSpecId(Long productSpecId) {
-        this.productSpecId = productSpecId;
+    public ProductData productId(String productId) {
+        this.productId = productId;
         return this;
     }
 
-    public void setProductSpecId(Long productSpecId) {
-        this.productSpecId = productSpecId;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     public String getUnit() {
@@ -496,7 +496,7 @@ public class ProductData implements Serializable {
         return "ProductData{" +
             "id=" + getId() +
             ", dataId='" + getDataId() + "'" +
-            ", productSpecId=" + getProductSpecId() +
+            ", productId='" + getProductId() + "'" +
             ", unit='" + getUnit() + "'" +
             ", volume=" + getVolume() +
             ", dataSlab='" + getDataSlab() + "'" +

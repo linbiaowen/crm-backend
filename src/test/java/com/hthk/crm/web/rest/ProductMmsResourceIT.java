@@ -39,8 +39,8 @@ public class ProductMmsResourceIT {
     private static final String DEFAULT_MMS_ID = "AAAAAAAAAA";
     private static final String UPDATED_MMS_ID = "BBBBBBBBBB";
 
-    private static final Long DEFAULT_PRODUCT_SPEC_ID = 1L;
-    private static final Long UPDATED_PRODUCT_SPEC_ID = 2L;
+    private static final String DEFAULT_PRODUCT_ID = "AAAAAAAAAA";
+    private static final String UPDATED_PRODUCT_ID = "BBBBBBBBBB";
 
     private static final String DEFAULT_UNIT = "AAAAAAAAAA";
     private static final String UPDATED_UNIT = "BBBBBBBBBB";
@@ -101,7 +101,7 @@ public class ProductMmsResourceIT {
     public static ProductMms createEntity() {
         ProductMms productMms = new ProductMms()
             .mmsId(DEFAULT_MMS_ID)
-            .productSpecId(DEFAULT_PRODUCT_SPEC_ID)
+            .productId(DEFAULT_PRODUCT_ID)
             .unit(DEFAULT_UNIT)
             .volume(DEFAULT_VOLUME)
             .mmsType(DEFAULT_MMS_TYPE)
@@ -126,7 +126,7 @@ public class ProductMmsResourceIT {
     public static ProductMms createUpdatedEntity() {
         ProductMms productMms = new ProductMms()
             .mmsId(UPDATED_MMS_ID)
-            .productSpecId(UPDATED_PRODUCT_SPEC_ID)
+            .productId(UPDATED_PRODUCT_ID)
             .unit(UPDATED_UNIT)
             .volume(UPDATED_VOLUME)
             .mmsType(UPDATED_MMS_TYPE)
@@ -164,7 +164,7 @@ public class ProductMmsResourceIT {
         assertThat(productMmsList).hasSize(databaseSizeBeforeCreate + 1);
         ProductMms testProductMms = productMmsList.get(productMmsList.size() - 1);
         assertThat(testProductMms.getMmsId()).isEqualTo(DEFAULT_MMS_ID);
-        assertThat(testProductMms.getProductSpecId()).isEqualTo(DEFAULT_PRODUCT_SPEC_ID);
+        assertThat(testProductMms.getProductId()).isEqualTo(DEFAULT_PRODUCT_ID);
         assertThat(testProductMms.getUnit()).isEqualTo(DEFAULT_UNIT);
         assertThat(testProductMms.getVolume()).isEqualTo(DEFAULT_VOLUME);
         assertThat(testProductMms.getMmsType()).isEqualTo(DEFAULT_MMS_TYPE);
@@ -200,10 +200,10 @@ public class ProductMmsResourceIT {
 
 
     @Test
-    public void checkProductSpecIdIsRequired() throws Exception {
+    public void checkMmsIdIsRequired() throws Exception {
         int databaseSizeBeforeTest = productMmsRepository.findAll().size();
         // set the field null
-        productMms.setProductSpecId(null);
+        productMms.setMmsId(null);
 
         // Create the ProductMms, which fails.
 
@@ -346,7 +346,7 @@ public class ProductMmsResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(productMms.getId())))
             .andExpect(jsonPath("$.[*].mmsId").value(hasItem(DEFAULT_MMS_ID)))
-            .andExpect(jsonPath("$.[*].productSpecId").value(hasItem(DEFAULT_PRODUCT_SPEC_ID.intValue())))
+            .andExpect(jsonPath("$.[*].productId").value(hasItem(DEFAULT_PRODUCT_ID)))
             .andExpect(jsonPath("$.[*].unit").value(hasItem(DEFAULT_UNIT)))
             .andExpect(jsonPath("$.[*].volume").value(hasItem(DEFAULT_VOLUME)))
             .andExpect(jsonPath("$.[*].mmsType").value(hasItem(DEFAULT_MMS_TYPE.toString())))
@@ -373,7 +373,7 @@ public class ProductMmsResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(productMms.getId()))
             .andExpect(jsonPath("$.mmsId").value(DEFAULT_MMS_ID))
-            .andExpect(jsonPath("$.productSpecId").value(DEFAULT_PRODUCT_SPEC_ID.intValue()))
+            .andExpect(jsonPath("$.productId").value(DEFAULT_PRODUCT_ID))
             .andExpect(jsonPath("$.unit").value(DEFAULT_UNIT))
             .andExpect(jsonPath("$.volume").value(DEFAULT_VOLUME))
             .andExpect(jsonPath("$.mmsType").value(DEFAULT_MMS_TYPE.toString()))
@@ -407,7 +407,7 @@ public class ProductMmsResourceIT {
         ProductMms updatedProductMms = productMmsRepository.findById(productMms.getId()).get();
         updatedProductMms
             .mmsId(UPDATED_MMS_ID)
-            .productSpecId(UPDATED_PRODUCT_SPEC_ID)
+            .productId(UPDATED_PRODUCT_ID)
             .unit(UPDATED_UNIT)
             .volume(UPDATED_VOLUME)
             .mmsType(UPDATED_MMS_TYPE)
@@ -432,7 +432,7 @@ public class ProductMmsResourceIT {
         assertThat(productMmsList).hasSize(databaseSizeBeforeUpdate);
         ProductMms testProductMms = productMmsList.get(productMmsList.size() - 1);
         assertThat(testProductMms.getMmsId()).isEqualTo(UPDATED_MMS_ID);
-        assertThat(testProductMms.getProductSpecId()).isEqualTo(UPDATED_PRODUCT_SPEC_ID);
+        assertThat(testProductMms.getProductId()).isEqualTo(UPDATED_PRODUCT_ID);
         assertThat(testProductMms.getUnit()).isEqualTo(UPDATED_UNIT);
         assertThat(testProductMms.getVolume()).isEqualTo(UPDATED_VOLUME);
         assertThat(testProductMms.getMmsType()).isEqualTo(UPDATED_MMS_TYPE);

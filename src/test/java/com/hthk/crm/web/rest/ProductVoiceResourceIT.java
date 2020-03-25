@@ -38,8 +38,8 @@ public class ProductVoiceResourceIT {
     private static final String DEFAULT_VOICE_ID = "AAAAAAAAAA";
     private static final String UPDATED_VOICE_ID = "BBBBBBBBBB";
 
-    private static final Long DEFAULT_PRODUCT_SPEC_ID = 1L;
-    private static final Long UPDATED_PRODUCT_SPEC_ID = 2L;
+    private static final String DEFAULT_PRODUCT_ID = "AAAAAAAAAA";
+    private static final String UPDATED_PRODUCT_ID = "BBBBBBBBBB";
 
     private static final String DEFAULT_UNIT = "AAAAAAAAAA";
     private static final String UPDATED_UNIT = "BBBBBBBBBB";
@@ -97,7 +97,7 @@ public class ProductVoiceResourceIT {
     public static ProductVoice createEntity() {
         ProductVoice productVoice = new ProductVoice()
             .voiceId(DEFAULT_VOICE_ID)
-            .productSpecId(DEFAULT_PRODUCT_SPEC_ID)
+            .productId(DEFAULT_PRODUCT_ID)
             .unit(DEFAULT_UNIT)
             .volume(DEFAULT_VOLUME)
             .roamingFlag(DEFAULT_ROAMING_FLAG)
@@ -121,7 +121,7 @@ public class ProductVoiceResourceIT {
     public static ProductVoice createUpdatedEntity() {
         ProductVoice productVoice = new ProductVoice()
             .voiceId(UPDATED_VOICE_ID)
-            .productSpecId(UPDATED_PRODUCT_SPEC_ID)
+            .productId(UPDATED_PRODUCT_ID)
             .unit(UPDATED_UNIT)
             .volume(UPDATED_VOLUME)
             .roamingFlag(UPDATED_ROAMING_FLAG)
@@ -158,7 +158,7 @@ public class ProductVoiceResourceIT {
         assertThat(productVoiceList).hasSize(databaseSizeBeforeCreate + 1);
         ProductVoice testProductVoice = productVoiceList.get(productVoiceList.size() - 1);
         assertThat(testProductVoice.getVoiceId()).isEqualTo(DEFAULT_VOICE_ID);
-        assertThat(testProductVoice.getProductSpecId()).isEqualTo(DEFAULT_PRODUCT_SPEC_ID);
+        assertThat(testProductVoice.getProductId()).isEqualTo(DEFAULT_PRODUCT_ID);
         assertThat(testProductVoice.getUnit()).isEqualTo(DEFAULT_UNIT);
         assertThat(testProductVoice.getVolume()).isEqualTo(DEFAULT_VOLUME);
         assertThat(testProductVoice.isRoamingFlag()).isEqualTo(DEFAULT_ROAMING_FLAG);
@@ -193,10 +193,10 @@ public class ProductVoiceResourceIT {
 
 
     @Test
-    public void checkProductSpecIdIsRequired() throws Exception {
+    public void checkVoiceIdIsRequired() throws Exception {
         int databaseSizeBeforeTest = productVoiceRepository.findAll().size();
         // set the field null
-        productVoice.setProductSpecId(null);
+        productVoice.setVoiceId(null);
 
         // Create the ProductVoice, which fails.
 
@@ -339,7 +339,7 @@ public class ProductVoiceResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(productVoice.getId())))
             .andExpect(jsonPath("$.[*].voiceId").value(hasItem(DEFAULT_VOICE_ID)))
-            .andExpect(jsonPath("$.[*].productSpecId").value(hasItem(DEFAULT_PRODUCT_SPEC_ID.intValue())))
+            .andExpect(jsonPath("$.[*].productId").value(hasItem(DEFAULT_PRODUCT_ID)))
             .andExpect(jsonPath("$.[*].unit").value(hasItem(DEFAULT_UNIT)))
             .andExpect(jsonPath("$.[*].volume").value(hasItem(DEFAULT_VOLUME)))
             .andExpect(jsonPath("$.[*].roamingFlag").value(hasItem(DEFAULT_ROAMING_FLAG.booleanValue())))
@@ -365,7 +365,7 @@ public class ProductVoiceResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(productVoice.getId()))
             .andExpect(jsonPath("$.voiceId").value(DEFAULT_VOICE_ID))
-            .andExpect(jsonPath("$.productSpecId").value(DEFAULT_PRODUCT_SPEC_ID.intValue()))
+            .andExpect(jsonPath("$.productId").value(DEFAULT_PRODUCT_ID))
             .andExpect(jsonPath("$.unit").value(DEFAULT_UNIT))
             .andExpect(jsonPath("$.volume").value(DEFAULT_VOLUME))
             .andExpect(jsonPath("$.roamingFlag").value(DEFAULT_ROAMING_FLAG.booleanValue()))
@@ -398,7 +398,7 @@ public class ProductVoiceResourceIT {
         ProductVoice updatedProductVoice = productVoiceRepository.findById(productVoice.getId()).get();
         updatedProductVoice
             .voiceId(UPDATED_VOICE_ID)
-            .productSpecId(UPDATED_PRODUCT_SPEC_ID)
+            .productId(UPDATED_PRODUCT_ID)
             .unit(UPDATED_UNIT)
             .volume(UPDATED_VOLUME)
             .roamingFlag(UPDATED_ROAMING_FLAG)
@@ -422,7 +422,7 @@ public class ProductVoiceResourceIT {
         assertThat(productVoiceList).hasSize(databaseSizeBeforeUpdate);
         ProductVoice testProductVoice = productVoiceList.get(productVoiceList.size() - 1);
         assertThat(testProductVoice.getVoiceId()).isEqualTo(UPDATED_VOICE_ID);
-        assertThat(testProductVoice.getProductSpecId()).isEqualTo(UPDATED_PRODUCT_SPEC_ID);
+        assertThat(testProductVoice.getProductId()).isEqualTo(UPDATED_PRODUCT_ID);
         assertThat(testProductVoice.getUnit()).isEqualTo(UPDATED_UNIT);
         assertThat(testProductVoice.getVolume()).isEqualTo(UPDATED_VOLUME);
         assertThat(testProductVoice.isRoamingFlag()).isEqualTo(UPDATED_ROAMING_FLAG);

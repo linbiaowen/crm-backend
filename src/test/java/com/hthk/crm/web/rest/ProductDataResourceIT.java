@@ -38,8 +38,8 @@ public class ProductDataResourceIT {
     private static final String DEFAULT_DATA_ID = "AAAAAAAAAA";
     private static final String UPDATED_DATA_ID = "BBBBBBBBBB";
 
-    private static final Long DEFAULT_PRODUCT_SPEC_ID = 1L;
-    private static final Long UPDATED_PRODUCT_SPEC_ID = 2L;
+    private static final String DEFAULT_PRODUCT_ID = "AAAAAAAAAA";
+    private static final String UPDATED_PRODUCT_ID = "BBBBBBBBBB";
 
     private static final String DEFAULT_UNIT = "AAAAAAAAAA";
     private static final String UPDATED_UNIT = "BBBBBBBBBB";
@@ -133,7 +133,7 @@ public class ProductDataResourceIT {
     public static ProductData createEntity() {
         ProductData productData = new ProductData()
             .dataId(DEFAULT_DATA_ID)
-            .productSpecId(DEFAULT_PRODUCT_SPEC_ID)
+            .productId(DEFAULT_PRODUCT_ID)
             .unit(DEFAULT_UNIT)
             .volume(DEFAULT_VOLUME)
             .dataSlab(DEFAULT_DATA_SLAB)
@@ -169,7 +169,7 @@ public class ProductDataResourceIT {
     public static ProductData createUpdatedEntity() {
         ProductData productData = new ProductData()
             .dataId(UPDATED_DATA_ID)
-            .productSpecId(UPDATED_PRODUCT_SPEC_ID)
+            .productId(UPDATED_PRODUCT_ID)
             .unit(UPDATED_UNIT)
             .volume(UPDATED_VOLUME)
             .dataSlab(UPDATED_DATA_SLAB)
@@ -218,7 +218,7 @@ public class ProductDataResourceIT {
         assertThat(productDataList).hasSize(databaseSizeBeforeCreate + 1);
         ProductData testProductData = productDataList.get(productDataList.size() - 1);
         assertThat(testProductData.getDataId()).isEqualTo(DEFAULT_DATA_ID);
-        assertThat(testProductData.getProductSpecId()).isEqualTo(DEFAULT_PRODUCT_SPEC_ID);
+        assertThat(testProductData.getProductId()).isEqualTo(DEFAULT_PRODUCT_ID);
         assertThat(testProductData.getUnit()).isEqualTo(DEFAULT_UNIT);
         assertThat(testProductData.getVolume()).isEqualTo(DEFAULT_VOLUME);
         assertThat(testProductData.getDataSlab()).isEqualTo(DEFAULT_DATA_SLAB);
@@ -265,10 +265,10 @@ public class ProductDataResourceIT {
 
 
     @Test
-    public void checkProductSpecIdIsRequired() throws Exception {
+    public void checkDataIdIsRequired() throws Exception {
         int databaseSizeBeforeTest = productDataRepository.findAll().size();
         // set the field null
-        productData.setProductSpecId(null);
+        productData.setDataId(null);
 
         // Create the ProductData, which fails.
 
@@ -411,7 +411,7 @@ public class ProductDataResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(productData.getId())))
             .andExpect(jsonPath("$.[*].dataId").value(hasItem(DEFAULT_DATA_ID)))
-            .andExpect(jsonPath("$.[*].productSpecId").value(hasItem(DEFAULT_PRODUCT_SPEC_ID.intValue())))
+            .andExpect(jsonPath("$.[*].productId").value(hasItem(DEFAULT_PRODUCT_ID)))
             .andExpect(jsonPath("$.[*].unit").value(hasItem(DEFAULT_UNIT)))
             .andExpect(jsonPath("$.[*].volume").value(hasItem(DEFAULT_VOLUME)))
             .andExpect(jsonPath("$.[*].dataSlab").value(hasItem(DEFAULT_DATA_SLAB)))
@@ -449,7 +449,7 @@ public class ProductDataResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(productData.getId()))
             .andExpect(jsonPath("$.dataId").value(DEFAULT_DATA_ID))
-            .andExpect(jsonPath("$.productSpecId").value(DEFAULT_PRODUCT_SPEC_ID.intValue()))
+            .andExpect(jsonPath("$.productId").value(DEFAULT_PRODUCT_ID))
             .andExpect(jsonPath("$.unit").value(DEFAULT_UNIT))
             .andExpect(jsonPath("$.volume").value(DEFAULT_VOLUME))
             .andExpect(jsonPath("$.dataSlab").value(DEFAULT_DATA_SLAB))
@@ -494,7 +494,7 @@ public class ProductDataResourceIT {
         ProductData updatedProductData = productDataRepository.findById(productData.getId()).get();
         updatedProductData
             .dataId(UPDATED_DATA_ID)
-            .productSpecId(UPDATED_PRODUCT_SPEC_ID)
+            .productId(UPDATED_PRODUCT_ID)
             .unit(UPDATED_UNIT)
             .volume(UPDATED_VOLUME)
             .dataSlab(UPDATED_DATA_SLAB)
@@ -530,7 +530,7 @@ public class ProductDataResourceIT {
         assertThat(productDataList).hasSize(databaseSizeBeforeUpdate);
         ProductData testProductData = productDataList.get(productDataList.size() - 1);
         assertThat(testProductData.getDataId()).isEqualTo(UPDATED_DATA_ID);
-        assertThat(testProductData.getProductSpecId()).isEqualTo(UPDATED_PRODUCT_SPEC_ID);
+        assertThat(testProductData.getProductId()).isEqualTo(UPDATED_PRODUCT_ID);
         assertThat(testProductData.getUnit()).isEqualTo(UPDATED_UNIT);
         assertThat(testProductData.getVolume()).isEqualTo(UPDATED_VOLUME);
         assertThat(testProductData.getDataSlab()).isEqualTo(UPDATED_DATA_SLAB);

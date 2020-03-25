@@ -39,8 +39,8 @@ public class ProductSmsResourceIT {
     private static final String DEFAULT_SMS_ID = "AAAAAAAAAA";
     private static final String UPDATED_SMS_ID = "BBBBBBBBBB";
 
-    private static final Long DEFAULT_PRODUCT_SPEC_ID = 1L;
-    private static final Long UPDATED_PRODUCT_SPEC_ID = 2L;
+    private static final String DEFAULT_PRODUCT_ID = "AAAAAAAAAA";
+    private static final String UPDATED_PRODUCT_ID = "BBBBBBBBBB";
 
     private static final String DEFAULT_UNIT = "AAAAAAAAAA";
     private static final String UPDATED_UNIT = "BBBBBBBBBB";
@@ -101,7 +101,7 @@ public class ProductSmsResourceIT {
     public static ProductSms createEntity() {
         ProductSms productSms = new ProductSms()
             .smsId(DEFAULT_SMS_ID)
-            .productSpecId(DEFAULT_PRODUCT_SPEC_ID)
+            .productId(DEFAULT_PRODUCT_ID)
             .unit(DEFAULT_UNIT)
             .volume(DEFAULT_VOLUME)
             .smsType(DEFAULT_SMS_TYPE)
@@ -126,7 +126,7 @@ public class ProductSmsResourceIT {
     public static ProductSms createUpdatedEntity() {
         ProductSms productSms = new ProductSms()
             .smsId(UPDATED_SMS_ID)
-            .productSpecId(UPDATED_PRODUCT_SPEC_ID)
+            .productId(UPDATED_PRODUCT_ID)
             .unit(UPDATED_UNIT)
             .volume(UPDATED_VOLUME)
             .smsType(UPDATED_SMS_TYPE)
@@ -164,7 +164,7 @@ public class ProductSmsResourceIT {
         assertThat(productSmsList).hasSize(databaseSizeBeforeCreate + 1);
         ProductSms testProductSms = productSmsList.get(productSmsList.size() - 1);
         assertThat(testProductSms.getSmsId()).isEqualTo(DEFAULT_SMS_ID);
-        assertThat(testProductSms.getProductSpecId()).isEqualTo(DEFAULT_PRODUCT_SPEC_ID);
+        assertThat(testProductSms.getProductId()).isEqualTo(DEFAULT_PRODUCT_ID);
         assertThat(testProductSms.getUnit()).isEqualTo(DEFAULT_UNIT);
         assertThat(testProductSms.getVolume()).isEqualTo(DEFAULT_VOLUME);
         assertThat(testProductSms.getSmsType()).isEqualTo(DEFAULT_SMS_TYPE);
@@ -200,10 +200,10 @@ public class ProductSmsResourceIT {
 
 
     @Test
-    public void checkProductSpecIdIsRequired() throws Exception {
+    public void checkSmsIdIsRequired() throws Exception {
         int databaseSizeBeforeTest = productSmsRepository.findAll().size();
         // set the field null
-        productSms.setProductSpecId(null);
+        productSms.setSmsId(null);
 
         // Create the ProductSms, which fails.
 
@@ -346,7 +346,7 @@ public class ProductSmsResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(productSms.getId())))
             .andExpect(jsonPath("$.[*].smsId").value(hasItem(DEFAULT_SMS_ID)))
-            .andExpect(jsonPath("$.[*].productSpecId").value(hasItem(DEFAULT_PRODUCT_SPEC_ID.intValue())))
+            .andExpect(jsonPath("$.[*].productId").value(hasItem(DEFAULT_PRODUCT_ID)))
             .andExpect(jsonPath("$.[*].unit").value(hasItem(DEFAULT_UNIT)))
             .andExpect(jsonPath("$.[*].volume").value(hasItem(DEFAULT_VOLUME)))
             .andExpect(jsonPath("$.[*].smsType").value(hasItem(DEFAULT_SMS_TYPE.toString())))
@@ -373,7 +373,7 @@ public class ProductSmsResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(productSms.getId()))
             .andExpect(jsonPath("$.smsId").value(DEFAULT_SMS_ID))
-            .andExpect(jsonPath("$.productSpecId").value(DEFAULT_PRODUCT_SPEC_ID.intValue()))
+            .andExpect(jsonPath("$.productId").value(DEFAULT_PRODUCT_ID))
             .andExpect(jsonPath("$.unit").value(DEFAULT_UNIT))
             .andExpect(jsonPath("$.volume").value(DEFAULT_VOLUME))
             .andExpect(jsonPath("$.smsType").value(DEFAULT_SMS_TYPE.toString()))
@@ -407,7 +407,7 @@ public class ProductSmsResourceIT {
         ProductSms updatedProductSms = productSmsRepository.findById(productSms.getId()).get();
         updatedProductSms
             .smsId(UPDATED_SMS_ID)
-            .productSpecId(UPDATED_PRODUCT_SPEC_ID)
+            .productId(UPDATED_PRODUCT_ID)
             .unit(UPDATED_UNIT)
             .volume(UPDATED_VOLUME)
             .smsType(UPDATED_SMS_TYPE)
@@ -432,7 +432,7 @@ public class ProductSmsResourceIT {
         assertThat(productSmsList).hasSize(databaseSizeBeforeUpdate);
         ProductSms testProductSms = productSmsList.get(productSmsList.size() - 1);
         assertThat(testProductSms.getSmsId()).isEqualTo(UPDATED_SMS_ID);
-        assertThat(testProductSms.getProductSpecId()).isEqualTo(UPDATED_PRODUCT_SPEC_ID);
+        assertThat(testProductSms.getProductId()).isEqualTo(UPDATED_PRODUCT_ID);
         assertThat(testProductSms.getUnit()).isEqualTo(UPDATED_UNIT);
         assertThat(testProductSms.getVolume()).isEqualTo(UPDATED_VOLUME);
         assertThat(testProductSms.getSmsType()).isEqualTo(UPDATED_SMS_TYPE);

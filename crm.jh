@@ -831,8 +831,8 @@ entity ProductSimType {
 }
 
 entity ProductVoice {
-    voiceId String
-	productSpecId Long required
+    voiceId String required
+	productId String
 	unit String required
     volume Integer required
     roamingFlag Boolean
@@ -848,8 +848,8 @@ entity ProductVoice {
 }
 
 entity ProductData {
-    dataId String
-	productSpecId Long required
+    dataId String required
+	productId String
     unit String required
     volume Integer required
     dataSlab String
@@ -877,8 +877,8 @@ entity ProductData {
 }
 
 entity ProductSms {
-    smsId String
-	productSpecId Long required
+    smsId String required
+	productId String
     unit String required
     volume Integer required
     smsType SmsType
@@ -899,8 +899,8 @@ enum SmsType {
 }
 
 entity ProductMms {
-    mmsId String
-	productSpecId Long required
+    mmsId String required
+	productId String
     unit String required
     volume Integer required
     mmsType MmsType

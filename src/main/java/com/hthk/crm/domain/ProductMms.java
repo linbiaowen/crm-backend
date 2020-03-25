@@ -25,12 +25,12 @@ public class ProductMms implements Serializable {
     @Id
     private String id;
 
+    @NotNull
     @Field("mms_id")
     private String mmsId;
 
-    @NotNull
-    @Field("product_spec_id")
-    private Long productSpecId;
+    @Field("product_id")
+    private String productId;
 
     @NotNull
     @Field("unit")
@@ -105,17 +105,17 @@ public class ProductMms implements Serializable {
         this.mmsId = mmsId;
     }
 
-    public Long getProductSpecId() {
-        return productSpecId;
+    public String getProductId() {
+        return productId;
     }
 
-    public ProductMms productSpecId(Long productSpecId) {
-        this.productSpecId = productSpecId;
+    public ProductMms productId(String productId) {
+        this.productId = productId;
         return this;
     }
 
-    public void setProductSpecId(Long productSpecId) {
-        this.productSpecId = productSpecId;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     public String getUnit() {
@@ -322,7 +322,7 @@ public class ProductMms implements Serializable {
         return "ProductMms{" +
             "id=" + getId() +
             ", mmsId='" + getMmsId() + "'" +
-            ", productSpecId=" + getProductSpecId() +
+            ", productId='" + getProductId() + "'" +
             ", unit='" + getUnit() + "'" +
             ", volume=" + getVolume() +
             ", mmsType='" + getMmsType() + "'" +

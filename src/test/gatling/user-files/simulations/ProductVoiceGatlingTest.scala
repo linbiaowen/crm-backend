@@ -102,7 +102,7 @@ class ProductVoiceGatlingTest extends Simulation {
             .body(StringBody("""{
                 "id":null
                 , "voiceId":"SAMPLE_TEXT"
-                , "productSpecId":null
+                , "productId":"SAMPLE_TEXT"
                 , "unit":"SAMPLE_TEXT"
                 , "volume":"0"
                 , "roamingFlag":null

@@ -23,12 +23,12 @@ public class ProductVoice implements Serializable {
     @Id
     private String id;
 
+    @NotNull
     @Field("voice_id")
     private String voiceId;
 
-    @NotNull
-    @Field("product_spec_id")
-    private Long productSpecId;
+    @Field("product_id")
+    private String productId;
 
     @NotNull
     @Field("unit")
@@ -100,17 +100,17 @@ public class ProductVoice implements Serializable {
         this.voiceId = voiceId;
     }
 
-    public Long getProductSpecId() {
-        return productSpecId;
+    public String getProductId() {
+        return productId;
     }
 
-    public ProductVoice productSpecId(Long productSpecId) {
-        this.productSpecId = productSpecId;
+    public ProductVoice productId(String productId) {
+        this.productId = productId;
         return this;
     }
 
-    public void setProductSpecId(Long productSpecId) {
-        this.productSpecId = productSpecId;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     public String getUnit() {
@@ -304,7 +304,7 @@ public class ProductVoice implements Serializable {
         return "ProductVoice{" +
             "id=" + getId() +
             ", voiceId='" + getVoiceId() + "'" +
-            ", productSpecId=" + getProductSpecId() +
+            ", productId='" + getProductId() + "'" +
             ", unit='" + getUnit() + "'" +
             ", volume=" + getVolume() +
             ", roamingFlag='" + isRoamingFlag() + "'" +
