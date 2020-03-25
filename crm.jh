@@ -530,7 +530,7 @@ entity SubscriptionProduct {
     remarks String
     vendorProvisionInd Boolean
     tempProvisionSeqIds String // temp fields for create SubscriptionProvision durring order creation. subscriptionProvisions : []
-    deliveryIds String // temp fields for create SubsItemDelivery durring order creation. subsItemDeliverys : []
+    tempDeliveryIds String // temp fields for create SubsItemDelivery durring order creation. subsItemDeliverys : []
     lockCount Integer
     createdDate Instant required
     createdBy String required

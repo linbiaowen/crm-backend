@@ -116,8 +116,8 @@ public class SubscriptionProduct implements Serializable {
     @Field("temp_provision_seq_ids")
     private String tempProvisionSeqIds;
 
-    @Field("delivery_ids")
-    private String deliveryIds;
+    @Field("temp_delivery_ids")
+    private String tempDeliveryIds;
 
     @Field("lock_count")
     private Integer lockCount;
@@ -142,11 +142,11 @@ public class SubscriptionProduct implements Serializable {
     @Field("tenant_id")
     private String tenantId;
 
-    //@DBRef
+    @DBRef
     @Field("subscriptionProvisions")
     private Set<SubscriptionProvision> subscriptionProvisions = new HashSet<>();
 
-    //@DBRef
+    @DBRef
     @Field("subsItemDeliverys")
     private Set<SubsItemDelivery> subsItemDeliverys = new HashSet<>();
 
@@ -541,17 +541,17 @@ public class SubscriptionProduct implements Serializable {
         this.tempProvisionSeqIds = tempProvisionSeqIds;
     }
 
-    public String getDeliveryIds() {
-        return deliveryIds;
+    public String getTempDeliveryIds() {
+        return tempDeliveryIds;
     }
 
-    public SubscriptionProduct deliveryIds(String deliveryIds) {
-        this.deliveryIds = deliveryIds;
+    public SubscriptionProduct tempDeliveryIds(String tempDeliveryIds) {
+        this.tempDeliveryIds = tempDeliveryIds;
         return this;
     }
 
-    public void setDeliveryIds(String deliveryIds) {
-        this.deliveryIds = deliveryIds;
+    public void setTempDeliveryIds(String tempDeliveryIds) {
+        this.tempDeliveryIds = tempDeliveryIds;
     }
 
     public Integer getLockCount() {
@@ -745,7 +745,7 @@ public class SubscriptionProduct implements Serializable {
             ", remarks='" + getRemarks() + "'" +
             ", vendorProvisionInd='" + isVendorProvisionInd() + "'" +
             ", tempProvisionSeqIds='" + getTempProvisionSeqIds() + "'" +
-            ", deliveryIds='" + getDeliveryIds() + "'" +
+            ", tempDeliveryIds='" + getTempDeliveryIds() + "'" +
             ", lockCount=" + getLockCount() +
             ", createdDate='" + getCreatedDate() + "'" +
             ", createdBy='" + getCreatedBy() + "'" +

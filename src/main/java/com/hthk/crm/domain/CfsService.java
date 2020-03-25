@@ -59,6 +59,14 @@ public class CfsService implements Serializable {
     @Field("tenant_id")
     private String tenantId;
 
+    //@DBRef
+    @Field("voiceServiceSpec")
+    private VoiceServiceSpec voiceServiceSpec;
+
+    //@DBRef
+    @Field("dataServiceSpec")
+    private DataServiceSpec dataServiceSpec;
+
     @DBRef
     @Field("product")
     @com.fasterxml.jackson.annotation.JsonBackReference
@@ -201,6 +209,32 @@ public class CfsService implements Serializable {
 
     public void setTenantId(String tenantId) {
         this.tenantId = tenantId;
+    }
+
+    public VoiceServiceSpec getVoiceServiceSpec() {
+        return voiceServiceSpec;
+    }
+
+    public CfsService voiceServiceSpec(VoiceServiceSpec voiceServiceSpec) {
+        this.voiceServiceSpec = voiceServiceSpec;
+        return this;
+    }
+
+    public void setVoiceServiceSpec(VoiceServiceSpec voiceServiceSpec) {
+        this.voiceServiceSpec = voiceServiceSpec;
+    }
+
+    public DataServiceSpec getDataServiceSpec() {
+        return dataServiceSpec;
+    }
+
+    public CfsService dataServiceSpec(DataServiceSpec dataServiceSpec) {
+        this.dataServiceSpec = dataServiceSpec;
+        return this;
+    }
+
+    public void setDataServiceSpec(DataServiceSpec dataServiceSpec) {
+        this.dataServiceSpec = dataServiceSpec;
     }
 
     public Product getProduct() {

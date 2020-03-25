@@ -121,8 +121,8 @@ public class SubscriptionProductResourceIT {
     private static final String DEFAULT_TEMP_PROVISION_SEQ_IDS = "AAAAAAAAAA";
     private static final String UPDATED_TEMP_PROVISION_SEQ_IDS = "BBBBBBBBBB";
 
-    private static final String DEFAULT_DELIVERY_IDS = "AAAAAAAAAA";
-    private static final String UPDATED_DELIVERY_IDS = "BBBBBBBBBB";
+    private static final String DEFAULT_TEMP_DELIVERY_IDS = "AAAAAAAAAA";
+    private static final String UPDATED_TEMP_DELIVERY_IDS = "BBBBBBBBBB";
 
     private static final Integer DEFAULT_LOCK_COUNT = 1;
     private static final Integer UPDATED_LOCK_COUNT = 2;
@@ -190,7 +190,7 @@ public class SubscriptionProductResourceIT {
             .remarks(DEFAULT_REMARKS)
             .vendorProvisionInd(DEFAULT_VENDOR_PROVISION_IND)
             .tempProvisionSeqIds(DEFAULT_TEMP_PROVISION_SEQ_IDS)
-            .deliveryIds(DEFAULT_DELIVERY_IDS)
+            .tempDeliveryIds(DEFAULT_TEMP_DELIVERY_IDS)
             .lockCount(DEFAULT_LOCK_COUNT)
             .createdDate(DEFAULT_CREATED_DATE)
             .createdBy(DEFAULT_CREATED_BY)
@@ -236,7 +236,7 @@ public class SubscriptionProductResourceIT {
             .remarks(UPDATED_REMARKS)
             .vendorProvisionInd(UPDATED_VENDOR_PROVISION_IND)
             .tempProvisionSeqIds(UPDATED_TEMP_PROVISION_SEQ_IDS)
-            .deliveryIds(UPDATED_DELIVERY_IDS)
+            .tempDeliveryIds(UPDATED_TEMP_DELIVERY_IDS)
             .lockCount(UPDATED_LOCK_COUNT)
             .createdDate(UPDATED_CREATED_DATE)
             .createdBy(UPDATED_CREATED_BY)
@@ -295,7 +295,7 @@ public class SubscriptionProductResourceIT {
         assertThat(testSubscriptionProduct.getRemarks()).isEqualTo(DEFAULT_REMARKS);
         assertThat(testSubscriptionProduct.isVendorProvisionInd()).isEqualTo(DEFAULT_VENDOR_PROVISION_IND);
         assertThat(testSubscriptionProduct.getTempProvisionSeqIds()).isEqualTo(DEFAULT_TEMP_PROVISION_SEQ_IDS);
-        assertThat(testSubscriptionProduct.getDeliveryIds()).isEqualTo(DEFAULT_DELIVERY_IDS);
+        assertThat(testSubscriptionProduct.getTempDeliveryIds()).isEqualTo(DEFAULT_TEMP_DELIVERY_IDS);
         assertThat(testSubscriptionProduct.getLockCount()).isEqualTo(DEFAULT_LOCK_COUNT);
         assertThat(testSubscriptionProduct.getCreatedDate()).isEqualTo(DEFAULT_CREATED_DATE);
         assertThat(testSubscriptionProduct.getCreatedBy()).isEqualTo(DEFAULT_CREATED_BY);
@@ -532,7 +532,7 @@ public class SubscriptionProductResourceIT {
             .andExpect(jsonPath("$.[*].remarks").value(hasItem(DEFAULT_REMARKS)))
             .andExpect(jsonPath("$.[*].vendorProvisionInd").value(hasItem(DEFAULT_VENDOR_PROVISION_IND.booleanValue())))
             .andExpect(jsonPath("$.[*].tempProvisionSeqIds").value(hasItem(DEFAULT_TEMP_PROVISION_SEQ_IDS)))
-            .andExpect(jsonPath("$.[*].deliveryIds").value(hasItem(DEFAULT_DELIVERY_IDS)))
+            .andExpect(jsonPath("$.[*].tempDeliveryIds").value(hasItem(DEFAULT_TEMP_DELIVERY_IDS)))
             .andExpect(jsonPath("$.[*].lockCount").value(hasItem(DEFAULT_LOCK_COUNT)))
             .andExpect(jsonPath("$.[*].createdDate").value(hasItem(DEFAULT_CREATED_DATE.toString())))
             .andExpect(jsonPath("$.[*].createdBy").value(hasItem(DEFAULT_CREATED_BY)))
@@ -580,7 +580,7 @@ public class SubscriptionProductResourceIT {
             .andExpect(jsonPath("$.remarks").value(DEFAULT_REMARKS))
             .andExpect(jsonPath("$.vendorProvisionInd").value(DEFAULT_VENDOR_PROVISION_IND.booleanValue()))
             .andExpect(jsonPath("$.tempProvisionSeqIds").value(DEFAULT_TEMP_PROVISION_SEQ_IDS))
-            .andExpect(jsonPath("$.deliveryIds").value(DEFAULT_DELIVERY_IDS))
+            .andExpect(jsonPath("$.tempDeliveryIds").value(DEFAULT_TEMP_DELIVERY_IDS))
             .andExpect(jsonPath("$.lockCount").value(DEFAULT_LOCK_COUNT))
             .andExpect(jsonPath("$.createdDate").value(DEFAULT_CREATED_DATE.toString()))
             .andExpect(jsonPath("$.createdBy").value(DEFAULT_CREATED_BY))
@@ -635,7 +635,7 @@ public class SubscriptionProductResourceIT {
             .remarks(UPDATED_REMARKS)
             .vendorProvisionInd(UPDATED_VENDOR_PROVISION_IND)
             .tempProvisionSeqIds(UPDATED_TEMP_PROVISION_SEQ_IDS)
-            .deliveryIds(UPDATED_DELIVERY_IDS)
+            .tempDeliveryIds(UPDATED_TEMP_DELIVERY_IDS)
             .lockCount(UPDATED_LOCK_COUNT)
             .createdDate(UPDATED_CREATED_DATE)
             .createdBy(UPDATED_CREATED_BY)
@@ -681,7 +681,7 @@ public class SubscriptionProductResourceIT {
         assertThat(testSubscriptionProduct.getRemarks()).isEqualTo(UPDATED_REMARKS);
         assertThat(testSubscriptionProduct.isVendorProvisionInd()).isEqualTo(UPDATED_VENDOR_PROVISION_IND);
         assertThat(testSubscriptionProduct.getTempProvisionSeqIds()).isEqualTo(UPDATED_TEMP_PROVISION_SEQ_IDS);
-        assertThat(testSubscriptionProduct.getDeliveryIds()).isEqualTo(UPDATED_DELIVERY_IDS);
+        assertThat(testSubscriptionProduct.getTempDeliveryIds()).isEqualTo(UPDATED_TEMP_DELIVERY_IDS);
         assertThat(testSubscriptionProduct.getLockCount()).isEqualTo(UPDATED_LOCK_COUNT);
         assertThat(testSubscriptionProduct.getCreatedDate()).isEqualTo(UPDATED_CREATED_DATE);
         assertThat(testSubscriptionProduct.getCreatedBy()).isEqualTo(UPDATED_CREATED_BY);

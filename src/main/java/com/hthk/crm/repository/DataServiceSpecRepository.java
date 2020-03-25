@@ -12,4 +12,7 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface DataServiceSpecRepository extends MongoRepository<DataServiceSpec, String> {
+
+    @Query("{ data_spec_id : ?0 }")
+	DataServiceSpec findByDataSpecId(String tempDataSpecIds);
 }

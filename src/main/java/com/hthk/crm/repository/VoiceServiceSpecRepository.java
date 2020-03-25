@@ -12,4 +12,7 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface VoiceServiceSpecRepository extends MongoRepository<VoiceServiceSpec, String> {
+
+    @Query("{ voice_spec_id : ?0 }")
+	VoiceServiceSpec findByVoiceSpecId(String tempVoiceSpecIds);
 }

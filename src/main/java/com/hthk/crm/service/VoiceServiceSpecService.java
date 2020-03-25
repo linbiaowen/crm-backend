@@ -9,7 +9,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 /**
  * Service Implementation for managing {@link VoiceServiceSpec}.
@@ -45,6 +48,19 @@ public class VoiceServiceSpecService {
     public Page<VoiceServiceSpec> findAll(Pageable pageable) {
         log.debug("Request to get all VoiceServiceSpecs");
         return voiceServiceSpecRepository.findAll(pageable);
+    }
+
+
+    /**
+     *  Get all the voiceServiceSpecs where CfsService is {@code null}.
+     *  @return the list of entities.
+     */
+    public List<VoiceServiceSpec> findAllWhereCfsServiceIsNull() {
+        log.debug("Request to get all voiceServiceSpecs where CfsService is null");
+        return StreamSupport
+            .stream(voiceServiceSpecRepository.findAll().spliterator(), false)
+            .filter(voiceServiceSpec -> voiceServiceSpec.getCfsService() == null)
+            .collect(Collectors.toList());
     }
 
     /**

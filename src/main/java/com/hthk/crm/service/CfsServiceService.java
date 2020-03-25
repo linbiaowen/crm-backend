@@ -1,7 +1,13 @@
 package com.hthk.crm.service;
 
 import com.hthk.crm.domain.CfsService;
+import com.hthk.crm.domain.DataServiceSpec;
+import com.hthk.crm.domain.VoiceServiceSpec;
 import com.hthk.crm.repository.CfsServiceRepository;
+import com.hthk.crm.repository.DataServiceSpecRepository;
+import com.hthk.crm.repository.VoiceServiceSpecRepository;
+
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,9 +29,13 @@ public class CfsServiceService {
     private final Logger log = LoggerFactory.getLogger(CfsServiceService.class);
 
     private final CfsServiceRepository cfsServiceRepository;
+    private final DataServiceSpecRepository dataServiceSpecRepository;
+    private final VoiceServiceSpecRepository voiceServiceSpecRepository;
 
-    public CfsServiceService(CfsServiceRepository cfsServiceRepository) {
+    public CfsServiceService(CfsServiceRepository cfsServiceRepository, DataServiceSpecRepository dataServiceSpecRepository, VoiceServiceSpecRepository voiceServiceSpecRepository) {
         this.cfsServiceRepository = cfsServiceRepository;
+        this.dataServiceSpecRepository = dataServiceSpecRepository;
+        this.voiceServiceSpecRepository = voiceServiceSpecRepository;
     }
 
     /**
@@ -36,6 +46,17 @@ public class CfsServiceService {
      */
     public CfsService save(CfsService cfsService) {
         log.debug("Request to save CfsService : {}", cfsService);
+
+        if (StringUtils.isNotBlank(cfsService.getTempDataSpecIds())){
+            DataServiceSpec dataServiceSpec = dataServiceSpecRepository.findByDataSpecId(cfsService.getTempDataSpecIds());
+             cfsService.setDataServiceSpec(dataServiceSpec);
+        }
+
+        if (StringUtils.isNotBlank(cfsService.getTempVoiceSpecIds())){
+            VoiceServiceSpec voiceServiceSpec = voiceServiceSpecRepository.findByVoiceSpecId(cfsService.getTempVoiceSpecIds());
+             cfsService.setVoiceServiceSpec(voiceServiceSpec);
+        }
+
         return cfsServiceRepository.save(cfsService);
     }
 

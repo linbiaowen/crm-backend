@@ -1,8 +1,10 @@
 package com.hthk.crm.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
@@ -88,6 +90,11 @@ public class VoiceServiceSpec implements Serializable {
     @NotNull
     @Field("tenant_id")
     private String tenantId;
+
+    @DBRef
+    @Field("cfsService")
+    @com.fasterxml.jackson.annotation.JsonBackReference
+    private CfsService cfsService;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public String getId() {
@@ -369,6 +376,19 @@ public class VoiceServiceSpec implements Serializable {
 
     public void setTenantId(String tenantId) {
         this.tenantId = tenantId;
+    }
+
+    public CfsService getCfsService() {
+        return cfsService;
+    }
+
+    public VoiceServiceSpec cfsService(CfsService cfsService) {
+        this.cfsService = cfsService;
+        return this;
+    }
+
+    public void setCfsService(CfsService cfsService) {
+        this.cfsService = cfsService;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

@@ -9,7 +9,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 /**
  * Service Implementation for managing {@link DataServiceSpec}.
@@ -45,6 +48,19 @@ public class DataServiceSpecService {
     public Page<DataServiceSpec> findAll(Pageable pageable) {
         log.debug("Request to get all DataServiceSpecs");
         return dataServiceSpecRepository.findAll(pageable);
+    }
+
+
+    /**
+     *  Get all the dataServiceSpecs where CfsService is {@code null}.
+     *  @return the list of entities.
+     */
+    public List<DataServiceSpec> findAllWhereCfsServiceIsNull() {
+        log.debug("Request to get all dataServiceSpecs where CfsService is null");
+        return StreamSupport
+            .stream(dataServiceSpecRepository.findAll().spliterator(), false)
+            .filter(dataServiceSpec -> dataServiceSpec.getCfsService() == null)
+            .collect(Collectors.toList());
     }
 
     /**

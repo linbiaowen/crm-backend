@@ -130,7 +130,7 @@ class SubscriptionProductGatlingTest extends Simulation {
                 , "remarks":"SAMPLE_TEXT"
                 , "vendorProvisionInd":null
                 , "tempProvisionSeqIds":"SAMPLE_TEXT"
-                , "deliveryIds":"SAMPLE_TEXT"
+                , "tempDeliveryIds":"SAMPLE_TEXT"
                 , "lockCount":"0"
                 , "createdDate":"2020-01-01T00:00:00.000Z"
                 , "createdBy":"SAMPLE_TEXT"
