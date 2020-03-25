@@ -42,6 +42,9 @@ public class ImageResourceIT {
     private static final ImageType DEFAULT_IMAGE_TYPE = ImageType.APP;
     private static final ImageType UPDATED_IMAGE_TYPE = ImageType.WEB;
 
+    private static final Integer DEFAULT_DISPLAY_SEQ = 1;
+    private static final Integer UPDATED_DISPLAY_SEQ = 2;
+
     private static final byte[] DEFAULT_IMAGE = TestUtil.createByteArray(1, "0");
     private static final byte[] UPDATED_IMAGE = TestUtil.createByteArray(1, "1");
     private static final String DEFAULT_IMAGE_CONTENT_TYPE = "image/jpg";
@@ -89,6 +92,7 @@ public class ImageResourceIT {
         Image image = new Image()
             .imageId(DEFAULT_IMAGE_ID)
             .imageType(DEFAULT_IMAGE_TYPE)
+            .displaySeq(DEFAULT_DISPLAY_SEQ)
             .image(DEFAULT_IMAGE)
             .imageContentType(DEFAULT_IMAGE_CONTENT_TYPE)
             .remark(DEFAULT_REMARK)
@@ -110,6 +114,7 @@ public class ImageResourceIT {
         Image image = new Image()
             .imageId(UPDATED_IMAGE_ID)
             .imageType(UPDATED_IMAGE_TYPE)
+            .displaySeq(UPDATED_DISPLAY_SEQ)
             .image(UPDATED_IMAGE)
             .imageContentType(UPDATED_IMAGE_CONTENT_TYPE)
             .remark(UPDATED_REMARK)
@@ -144,6 +149,7 @@ public class ImageResourceIT {
         Image testImage = imageList.get(imageList.size() - 1);
         assertThat(testImage.getImageId()).isEqualTo(DEFAULT_IMAGE_ID);
         assertThat(testImage.getImageType()).isEqualTo(DEFAULT_IMAGE_TYPE);
+        assertThat(testImage.getDisplaySeq()).isEqualTo(DEFAULT_DISPLAY_SEQ);
         assertThat(testImage.getImage()).isEqualTo(DEFAULT_IMAGE);
         assertThat(testImage.getImageContentType()).isEqualTo(DEFAULT_IMAGE_CONTENT_TYPE);
         assertThat(testImage.getRemark()).isEqualTo(DEFAULT_REMARK);
@@ -288,6 +294,7 @@ public class ImageResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(image.getId())))
             .andExpect(jsonPath("$.[*].imageId").value(hasItem(DEFAULT_IMAGE_ID.intValue())))
             .andExpect(jsonPath("$.[*].imageType").value(hasItem(DEFAULT_IMAGE_TYPE.toString())))
+            .andExpect(jsonPath("$.[*].displaySeq").value(hasItem(DEFAULT_DISPLAY_SEQ)))
             .andExpect(jsonPath("$.[*].imageContentType").value(hasItem(DEFAULT_IMAGE_CONTENT_TYPE)))
             .andExpect(jsonPath("$.[*].image").value(hasItem(Base64Utils.encodeToString(DEFAULT_IMAGE))))
             .andExpect(jsonPath("$.[*].remark").value(hasItem(DEFAULT_REMARK)))
@@ -311,6 +318,7 @@ public class ImageResourceIT {
             .andExpect(jsonPath("$.id").value(image.getId()))
             .andExpect(jsonPath("$.imageId").value(DEFAULT_IMAGE_ID.intValue()))
             .andExpect(jsonPath("$.imageType").value(DEFAULT_IMAGE_TYPE.toString()))
+            .andExpect(jsonPath("$.displaySeq").value(DEFAULT_DISPLAY_SEQ))
             .andExpect(jsonPath("$.imageContentType").value(DEFAULT_IMAGE_CONTENT_TYPE))
             .andExpect(jsonPath("$.image").value(Base64Utils.encodeToString(DEFAULT_IMAGE)))
             .andExpect(jsonPath("$.remark").value(DEFAULT_REMARK))
@@ -341,6 +349,7 @@ public class ImageResourceIT {
         updatedImage
             .imageId(UPDATED_IMAGE_ID)
             .imageType(UPDATED_IMAGE_TYPE)
+            .displaySeq(UPDATED_DISPLAY_SEQ)
             .image(UPDATED_IMAGE)
             .imageContentType(UPDATED_IMAGE_CONTENT_TYPE)
             .remark(UPDATED_REMARK)
@@ -362,6 +371,7 @@ public class ImageResourceIT {
         Image testImage = imageList.get(imageList.size() - 1);
         assertThat(testImage.getImageId()).isEqualTo(UPDATED_IMAGE_ID);
         assertThat(testImage.getImageType()).isEqualTo(UPDATED_IMAGE_TYPE);
+        assertThat(testImage.getDisplaySeq()).isEqualTo(UPDATED_DISPLAY_SEQ);
         assertThat(testImage.getImage()).isEqualTo(UPDATED_IMAGE);
         assertThat(testImage.getImageContentType()).isEqualTo(UPDATED_IMAGE_CONTENT_TYPE);
         assertThat(testImage.getRemark()).isEqualTo(UPDATED_REMARK);

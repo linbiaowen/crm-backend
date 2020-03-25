@@ -635,6 +635,7 @@ entity Offer {
 entity Image {
     imageId Long required
     imageType ImageType
+    displaySeq Integer
     image ImageBlob
     remark String
     lockCount Integer

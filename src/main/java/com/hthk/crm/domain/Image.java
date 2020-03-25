@@ -31,6 +31,9 @@ public class Image implements Serializable {
     @Field("image_type")
     private ImageType imageType;
 
+    @Field("display_seq")
+    private Integer displaySeq;
+
     @Field("image")
     private byte[] image;
 
@@ -106,6 +109,19 @@ public class Image implements Serializable {
 
     public void setImageType(ImageType imageType) {
         this.imageType = imageType;
+    }
+
+    public Integer getDisplaySeq() {
+        return displaySeq;
+    }
+
+    public Image displaySeq(Integer displaySeq) {
+        this.displaySeq = displaySeq;
+        return this;
+    }
+
+    public void setDisplaySeq(Integer displaySeq) {
+        this.displaySeq = displaySeq;
     }
 
     public byte[] getImage() {
@@ -274,6 +290,7 @@ public class Image implements Serializable {
             "id=" + getId() +
             ", imageId=" + getImageId() +
             ", imageType='" + getImageType() + "'" +
+            ", displaySeq=" + getDisplaySeq() +
             ", image='" + getImage() + "'" +
             ", imageContentType='" + getImageContentType() + "'" +
             ", remark='" + getRemark() + "'" +

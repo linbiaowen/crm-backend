@@ -103,6 +103,7 @@ class ImageGatlingTest extends Simulation {
                 "id":null
                 , "imageId":null
                 , "imageType":"APP"
+                , "displaySeq":"0"
                 , "image":null
                 , "remark":"SAMPLE_TEXT"
                 , "lockCount":"0"
