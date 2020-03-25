@@ -12,4 +12,7 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface ResourceSpecificationRepository extends MongoRepository<ResourceSpecification, String> {
+
+    @Query("{ resource_spec_id : ?0 }")
+    ResourceSpecification findByResoureSpecId(String resourceSpecId);
 }

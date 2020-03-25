@@ -12,4 +12,7 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface ImageRepository extends MongoRepository<Image, String> {
+
+    @Query("{ image_id : ?0 }")
+	Image findByImageId(String imageId);
 }

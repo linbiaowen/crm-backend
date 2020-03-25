@@ -12,4 +12,7 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface OfferPromotionRepository extends MongoRepository<OfferPromotion, String> {
+
+    @Query("{ promo_code : ?0 }")
+	OfferPromotion findByPromoCode(String promoCode);
 }

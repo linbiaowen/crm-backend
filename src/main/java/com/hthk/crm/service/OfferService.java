@@ -1,7 +1,20 @@
 package com.hthk.crm.service;
 
+import com.hthk.crm.domain.Image;
 import com.hthk.crm.domain.Offer;
+import com.hthk.crm.domain.OfferAdvancePayment;
+import com.hthk.crm.domain.OfferCustomerSegment;
+import com.hthk.crm.domain.OfferDiscount;
+import com.hthk.crm.domain.OfferPromotion;
+import com.hthk.crm.domain.Product;
+import com.hthk.crm.repository.ImageRepository;
+import com.hthk.crm.repository.OfferAdvancePaymentRepository;
+import com.hthk.crm.repository.OfferDiscountRepository;
+import com.hthk.crm.repository.OfferPromotionRepository;
 import com.hthk.crm.repository.OfferRepository;
+import com.hthk.crm.repository.ProductRepository;
+
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,9 +33,19 @@ public class OfferService {
     private final Logger log = LoggerFactory.getLogger(OfferService.class);
 
     private final OfferRepository offerRepository;
+    private final OfferAdvancePaymentRepository offerAdvancePaymentRepository;
+    private final ProductRepository productRepository;
+    private final OfferPromotionRepository offerPromotionRepository;
+    private final OfferDiscountRepository offerDiscountRepository;
+    private final ImageRepository imageRepository;
 
-    public OfferService(OfferRepository offerRepository) {
+    public OfferService(OfferRepository offerRepository, OfferAdvancePaymentRepository offerAdvancePaymentRepository, ProductRepository productRepository, OfferPromotionRepository offerPromotionRepository, OfferDiscountRepository offerDiscountRepository, ImageRepository imageRepository) {
         this.offerRepository = offerRepository;
+        this.offerAdvancePaymentRepository = offerAdvancePaymentRepository;
+        this.productRepository = productRepository;
+        this.offerPromotionRepository = offerPromotionRepository;
+        this.offerDiscountRepository = offerDiscountRepository;
+        this.imageRepository = imageRepository;
     }
 
     /**
@@ -33,6 +56,85 @@ public class OfferService {
      */
     public Offer save(Offer offer) {
         log.debug("Request to save Offer : {}", offer);
+
+        
+        /**
+         * testing code to setup offer advancePayment
+         */
+        if (StringUtils.isNotBlank(offer.getTempAdvancePaymentIds())){
+            String[] advancePaymentIds = offer.getTempAdvancePaymentIds().split(",");
+            for (String advancePaymentId : advancePaymentIds){
+                OfferAdvancePayment offerAdvancePayment = offerAdvancePaymentRepository.findByOfferAdvancePaymentId(Long.parseLong(advancePaymentId));
+                offer.addOfferAdvancePayment(offerAdvancePayment);
+            }
+        }
+
+        /**
+         * testing code to setup offer products.
+         */
+        if (StringUtils.isNotBlank(offer.getTempProductIds())){
+            log.debug("offer.getProductIds()=" + offer.getTempProductIds());
+            String[] productIds = offer.getTempProductIds().split(",");
+            for (String productId : productIds){
+                log.debug("productId=" + productId);
+                Product product = productRepository.findByProdutId(Long.parseLong(productId));
+                log.debug("product=" + product == null ? "not found" : product.getProductId());
+                offer.addProducts(product);
+            }
+        }
+
+        if (StringUtils.isNotBlank(offer.getTempCustomerSegments())){
+            log.debug("offer.getTempCustomerSegments()=" + offer.getTempCustomerSegments());
+            String[] customerSegments = offer.getTempCustomerSegments().split(",");
+            for (String customerSegment : customerSegments){
+                log.debug("customerSegment=" + customerSegment);
+                offer.addCustomerSegments(customerSegment);
+            }
+        }
+
+        if (StringUtils.isNotBlank(offer.getTempCustomerClasses())){
+            log.debug("offer.getTempCustomerClasses()=" + offer.getTempCustomerClasses());
+            String[] customerClasses = offer.getTempCustomerClasses().split(",");
+            for (String customerClass : customerClasses){
+                log.debug("customerClass=" + customerClass);
+                offer.addCustomerClasses(customerClass);
+            }
+        }
+
+        if (StringUtils.isNotBlank(offer.getTempSalesChannels())){
+            log.debug("offer.getTempSalesChannels()=" + offer.getTempSalesChannels());
+            String[] salesChannels = offer.getTempSalesChannels().split(",");
+            for (String salesChannel : salesChannels){
+                log.debug("salesChannel=" + salesChannel);
+                offer.addSalesChannels(salesChannel);
+            }
+        }
+
+        if (StringUtils.isNotBlank(offer.getTempPromoCodes())){
+            String[] promoCodes = offer.getTempPromoCodes().split(",");
+            for (String promoCode : promoCodes){
+                OfferPromotion offerPromotion = offerPromotionRepository.findByPromoCode(promoCode);
+                offer.addOfferPromotions(offerPromotion);
+            }
+        }
+
+        if (StringUtils.isNotBlank(offer.getTempDiscountCodes())){
+            String[] discountCodes = offer.getTempDiscountCodes().split(",");
+            for (String discountCode : discountCodes){
+                OfferDiscount offerDiscount = offerDiscountRepository.findByDiscountCode(discountCode);
+                offer.addOfferDiscounts(offerDiscount);
+            }
+        }
+
+        if (StringUtils.isNotBlank(offer.getTempImageIds())){
+            String[] imageIds = offer.getTempImageIds().split(",");
+            for (String imageId : imageIds){
+                Image image = imageRepository.findByImageId(imageId);
+                offer.addImages(image);
+            }
+        }
+
+
         return offerRepository.save(offer);
     }
 

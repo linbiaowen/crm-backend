@@ -12,4 +12,7 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface ProductVoiceRepository extends MongoRepository<ProductVoice, String> {
+
+	@Query("{ voice_id : ?0 }")
+	ProductVoice findByVoiceId(String tempVoiceIds);
 }

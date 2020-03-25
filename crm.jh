@@ -666,17 +666,18 @@ enum OfferType {
 	BASE, ADDON, VAS, BUNDLE
 }
 
-entity OfferProduct {
-	recSeqId Long
-    productId String
-    offerId String
-    lockCount Integer
-    createdDate Instant required
-    createdBy String required
-    lastUpdatedDate Instant required
-    lastUpdatedBy String required
-    tenantId String required
-}
+//to be removed.
+// entity OfferProduct {
+// 	recSeqId Long
+//     productId String
+//     offerId String
+//     lockCount Integer
+//     createdDate Instant required
+//     createdBy String required
+//     lastUpdatedDate Instant required
+//     lastUpdatedBy String required
+//     tenantId String required
+// }
 
 //to be removed.
 // entity OfferSpecification {
@@ -1258,6 +1259,9 @@ relationship OneToOne {
 	//CfsServices{cfsServiceSpec(serviceSpecId)} to CfsServiceSpec{cfsServices(serviceId)},
 	//CfsServiceSpec{voiceServiceSpec(voiceSpecId)} to VoiceServiceSpec{cfsServices(serviceId)},
     //CfsServiceSpec{dataServiceSpec(dataSpecId)} to DataServiceSpec{cfsServices(serviceId)}
+    
+    CfsService{voiceServiceSpec(voiceSpecId)} to VoiceServiceSpec{cfsService(serviceId)},
+    CfsService{dataServiceSpec(dataSpecId)} to DataServiceSpec{cfsService(serviceId)},
     Product{productVoice(voiceId)} to ProductVoice{product(productId)},
     Product{productData(dataId)} to ProductData{product(productId)},
     Product{productSms(smsId)} to ProductSms{product(productId)},

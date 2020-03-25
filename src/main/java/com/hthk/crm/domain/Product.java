@@ -171,7 +171,7 @@ public class Product implements Serializable {
 
     //@DBRef
     @Field("deliveryOptions")
-    private Set<DeliveryOption> deliveryOptions = new HashSet<>();
+    private Set<String> deliveryOptions = new HashSet<>();
 
     //@DBRef
     @Field("resourceSpecifications")
@@ -702,28 +702,26 @@ public class Product implements Serializable {
         this.cfsService = cfsService;
     }
 
-    public Set<DeliveryOption> getDeliveryOptions() {
+    public Set<String> getDeliveryOptions() {
         return deliveryOptions;
     }
 
-    public Product deliveryOptions(Set<DeliveryOption> deliveryOptions) {
+    public Product deliveryOptions(Set<String> deliveryOptions) {
         this.deliveryOptions = deliveryOptions;
         return this;
     }
 
-    public Product addDeliveryOptions(DeliveryOption deliveryOption) {
+    public Product addDeliveryOptions(String deliveryOption) {
         this.deliveryOptions.add(deliveryOption);
-        deliveryOption.setProduct(this);
         return this;
     }
 
-    public Product removeDeliveryOptions(DeliveryOption deliveryOption) {
+    public Product removeDeliveryOptions(String deliveryOption) {
         this.deliveryOptions.remove(deliveryOption);
-        deliveryOption.setProduct(null);
         return this;
     }
 
-    public void setDeliveryOptions(Set<DeliveryOption> deliveryOptions) {
+    public void setDeliveryOptions(Set<String> deliveryOptions) {
         this.deliveryOptions = deliveryOptions;
     }
 

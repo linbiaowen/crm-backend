@@ -12,4 +12,7 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface OfferAdvancePaymentRepository extends MongoRepository<OfferAdvancePayment, String> {
+
+	@Query("{ advance_payment_id : ?0 }")
+	OfferAdvancePayment findByOfferAdvancePaymentId(long parseLong);
 }

@@ -150,15 +150,15 @@ public class Offer implements Serializable {
 
     //@DBRef
     @Field("customerSegments")
-    private Set<OfferCustomerSegment> customerSegments = new HashSet<>();
+    private Set<String> customerSegments = new HashSet<>();
 
     //@DBRef
     @Field("customerClasses")
-    private Set<OfferCustomerClass> customerClasses = new HashSet<>();
+    private Set<String> customerClasses = new HashSet<>();
 
     //@DBRef
     @Field("salesChannels")
-    private Set<OfferSalesChannel> salesChannels = new HashSet<>();
+    private Set<String> salesChannels = new HashSet<>();
 
     //@DBRef
     @Field("products")
@@ -692,78 +692,72 @@ public class Offer implements Serializable {
         this.tenantId = tenantId;
     }
 
-    public Set<OfferCustomerSegment> getCustomerSegments() {
+    public Set<String> getCustomerSegments() {
         return customerSegments;
     }
 
-    public Offer customerSegments(Set<OfferCustomerSegment> offerCustomerSegments) {
+    public Offer customerSegments(Set<String> offerCustomerSegments) {
         this.customerSegments = offerCustomerSegments;
         return this;
     }
 
-    public Offer addCustomerSegments(OfferCustomerSegment offerCustomerSegment) {
+    public Offer addCustomerSegments(String offerCustomerSegment) {
         this.customerSegments.add(offerCustomerSegment);
-        offerCustomerSegment.setOffer(this);
         return this;
     }
 
-    public Offer removeCustomerSegments(OfferCustomerSegment offerCustomerSegment) {
+    public Offer removeCustomerSegments(String offerCustomerSegment) {
         this.customerSegments.remove(offerCustomerSegment);
-        offerCustomerSegment.setOffer(null);
         return this;
     }
 
-    public void setCustomerSegments(Set<OfferCustomerSegment> offerCustomerSegments) {
+    public void setCustomerSegments(Set<String> offerCustomerSegments) {
         this.customerSegments = offerCustomerSegments;
     }
 
-    public Set<OfferCustomerClass> getCustomerClasses() {
+    public Set<String> getCustomerClasses() {
         return customerClasses;
     }
 
-    public Offer customerClasses(Set<OfferCustomerClass> offerCustomerClasses) {
+    public Offer customerClasses(Set<String> offerCustomerClasses) {
         this.customerClasses = offerCustomerClasses;
         return this;
     }
 
-    public Offer addCustomerClasses(OfferCustomerClass offerCustomerClass) {
+    public Offer addCustomerClasses(String offerCustomerClass) {
         this.customerClasses.add(offerCustomerClass);
-        offerCustomerClass.setOffer(this);
         return this;
     }
 
-    public Offer removeCustomerClasses(OfferCustomerClass offerCustomerClass) {
+    public Offer removeCustomerClasses(String offerCustomerClass) {
         this.customerClasses.remove(offerCustomerClass);
-        offerCustomerClass.setOffer(null);
         return this;
     }
 
-    public void setCustomerClasses(Set<OfferCustomerClass> offerCustomerClasses) {
+    public void setCustomerClasses(Set<String> offerCustomerClasses) {
         this.customerClasses = offerCustomerClasses;
     }
 
-    public Set<OfferSalesChannel> getSalesChannels() {
+    public Set<String> getSalesChannels() {
         return salesChannels;
     }
 
-    public Offer salesChannels(Set<OfferSalesChannel> offerSalesChannels) {
+    public Offer salesChannels(Set<String> offerSalesChannels) {
         this.salesChannels = offerSalesChannels;
         return this;
     }
 
-    public Offer addSalesChannels(OfferSalesChannel offerSalesChannel) {
+    public Offer addSalesChannels(String offerSalesChannel) {
         this.salesChannels.add(offerSalesChannel);
-        offerSalesChannel.setOffer(this);
         return this;
     }
 
-    public Offer removeSalesChannels(OfferSalesChannel offerSalesChannel) {
+    public Offer removeSalesChannels(String offerSalesChannel) {
         this.salesChannels.remove(offerSalesChannel);
-        offerSalesChannel.setOffer(null);
         return this;
     }
 
-    public void setSalesChannels(Set<OfferSalesChannel> offerSalesChannels) {
+    public void setSalesChannels(Set<String> offerSalesChannels) {
         this.salesChannels = offerSalesChannels;
     }
 

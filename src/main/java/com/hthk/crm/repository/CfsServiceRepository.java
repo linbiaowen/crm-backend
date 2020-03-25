@@ -12,4 +12,7 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface CfsServiceRepository extends MongoRepository<CfsService, String> {
+
+    @Query("{ service_id : ?0 }")
+	CfsService findbyServiceId(String tempServiceId);
 }
