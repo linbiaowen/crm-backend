@@ -1349,8 +1349,8 @@ service * with serviceClass
 // angularSuffix * with mySuffix
 
 //crm-frontend
-skipClient *
-//skipServer *
+//skipClient *
+skipServer *
 
 //jhipster import-jdl ../crm-backend/crm.jh --force
 

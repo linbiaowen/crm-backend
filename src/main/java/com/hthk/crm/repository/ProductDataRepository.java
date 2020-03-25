@@ -12,4 +12,6 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface ProductDataRepository extends MongoRepository<ProductData, String> {
+    @Query("{ data_id : ?0 }")
+	ProductData findByDataId(String tempDataIds);
 }
