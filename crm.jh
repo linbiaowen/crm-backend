@@ -621,7 +621,7 @@ entity Offer {
     infoSharingAllowed Boolean
     infoSharingOptions String
     offerPeriod Integer
-    offerPeriodTerm String
+    offerPeriodTerm OfferPeriodTerm
     paymentType String
     priority Integer
     lockCount Integer
@@ -630,6 +630,10 @@ entity Offer {
     lastUpdatedDate Instant required
     lastUpdatedBy String required
     tenantId String required
+}
+
+enum OfferPeriodTerm {
+    DAYS, WEEKS, MONTHS
 }
 
 entity Image {
@@ -854,8 +858,8 @@ entity ProductData {
     volume Integer required
     dataSlab String
     dataSpeedCategory String
-    specicalPackType String
-    dataServiceType String
+    specicalPackType SpecicalPackType
+    dataServiceType DataServiceType
     roamingRegions String
     roamingCountries String
     roamingDayPassType String
@@ -874,6 +878,14 @@ entity ProductData {
     lastUpdatedDate Instant required
     lastUpdatedBy String required
     tenantId String required
+}
+
+enum SpecicalPackType {
+    SOCIAL, ENTERTAINMENT
+}
+
+enum DataServiceType {
+    LOCAL, ROAMING
 }
 
 entity ProductSms {
@@ -1349,8 +1361,8 @@ service * with serviceClass
 // angularSuffix * with mySuffix
 
 //crm-frontend
-//skipClient *
-skipServer *
+skipClient *
+//skipServer *
 
 //jhipster import-jdl ../crm-backend/crm.jh --force
 

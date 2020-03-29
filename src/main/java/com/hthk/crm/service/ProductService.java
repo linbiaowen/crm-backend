@@ -134,7 +134,9 @@ public class ProductService {
         if (StringUtils.isNotBlank(product.getTempImageIds())){
             String[] imageIds = product.getTempImageIds().split(",");
             for (String imageId : imageIds){
-                Image image = imageRepository.findByImageId(imageId);
+                log.debug("imageId = " + imageId);
+                Image image = imageRepository.findByImageId(Long.parseLong(imageId));
+                log.debug("image = " + image == null ? "can not find image." : image.getId());
                 product.addImages(image);
             }
         }

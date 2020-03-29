@@ -77,7 +77,7 @@ public class OfferService {
             String[] productIds = offer.getTempProductIds().split(",");
             for (String productId : productIds){
                 log.debug("productId=" + productId);
-                Product product = productRepository.findByProdutId(Long.parseLong(productId));
+                Product product = productRepository.findByProdutId(productId);
                 log.debug("product=" + product == null ? "not found" : product.getProductId());
                 offer.addProducts(product);
             }
@@ -129,7 +129,7 @@ public class OfferService {
         if (StringUtils.isNotBlank(offer.getTempImageIds())){
             String[] imageIds = offer.getTempImageIds().split(",");
             for (String imageId : imageIds){
-                Image image = imageRepository.findByImageId(imageId);
+                Image image = imageRepository.findByImageId(Long.parseLong(imageId));
                 offer.addImages(image);
             }
         }

@@ -14,5 +14,5 @@ import org.springframework.stereotype.Repository;
 public interface ProductRepository extends MongoRepository<Product, String> {
 
     @Query("{ product_id : ?0 }")
-	Product findByProdutId(long parseLong);
+	Product findByProdutId(String productId);
 }
