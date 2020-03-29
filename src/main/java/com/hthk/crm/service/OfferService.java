@@ -78,8 +78,10 @@ public class OfferService {
             for (String productId : productIds){
                 log.debug("productId=" + productId);
                 Product product = productRepository.findByProdutId(productId);
-                log.debug("product=" + product == null ? "not found" : product.getProductId());
-                offer.addProducts(product);
+                log.debug("product=" + (product == null ? "not found" : product.getProductId()));
+                if (product != null){
+                    offer.addProducts(product);
+                }
             }
         }
 
