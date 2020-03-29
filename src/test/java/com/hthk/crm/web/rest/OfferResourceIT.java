@@ -34,6 +34,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.hthk.crm.domain.enumeration.OfferType;
+import com.hthk.crm.domain.enumeration.OfferPeriodTerm;
 /**
  * Integration tests for the {@link OfferResource} REST controller.
  */
@@ -130,8 +131,8 @@ public class OfferResourceIT {
     private static final Integer DEFAULT_OFFER_PERIOD = 1;
     private static final Integer UPDATED_OFFER_PERIOD = 2;
 
-    private static final String DEFAULT_OFFER_PERIOD_TERM = "AAAAAAAAAA";
-    private static final String UPDATED_OFFER_PERIOD_TERM = "BBBBBBBBBB";
+    private static final OfferPeriodTerm DEFAULT_OFFER_PERIOD_TERM = OfferPeriodTerm.DAYS;
+    private static final OfferPeriodTerm UPDATED_OFFER_PERIOD_TERM = OfferPeriodTerm.WEEKS;
 
     private static final String DEFAULT_PAYMENT_TYPE = "AAAAAAAAAA";
     private static final String UPDATED_PAYMENT_TYPE = "BBBBBBBBBB";
@@ -508,7 +509,7 @@ public class OfferResourceIT {
             .andExpect(jsonPath("$.[*].infoSharingAllowed").value(hasItem(DEFAULT_INFO_SHARING_ALLOWED.booleanValue())))
             .andExpect(jsonPath("$.[*].infoSharingOptions").value(hasItem(DEFAULT_INFO_SHARING_OPTIONS)))
             .andExpect(jsonPath("$.[*].offerPeriod").value(hasItem(DEFAULT_OFFER_PERIOD)))
-            .andExpect(jsonPath("$.[*].offerPeriodTerm").value(hasItem(DEFAULT_OFFER_PERIOD_TERM)))
+            .andExpect(jsonPath("$.[*].offerPeriodTerm").value(hasItem(DEFAULT_OFFER_PERIOD_TERM.toString())))
             .andExpect(jsonPath("$.[*].paymentType").value(hasItem(DEFAULT_PAYMENT_TYPE)))
             .andExpect(jsonPath("$.[*].priority").value(hasItem(DEFAULT_PRIORITY)))
             .andExpect(jsonPath("$.[*].lockCount").value(hasItem(DEFAULT_LOCK_COUNT)))
@@ -578,7 +579,7 @@ public class OfferResourceIT {
             .andExpect(jsonPath("$.infoSharingAllowed").value(DEFAULT_INFO_SHARING_ALLOWED.booleanValue()))
             .andExpect(jsonPath("$.infoSharingOptions").value(DEFAULT_INFO_SHARING_OPTIONS))
             .andExpect(jsonPath("$.offerPeriod").value(DEFAULT_OFFER_PERIOD))
-            .andExpect(jsonPath("$.offerPeriodTerm").value(DEFAULT_OFFER_PERIOD_TERM))
+            .andExpect(jsonPath("$.offerPeriodTerm").value(DEFAULT_OFFER_PERIOD_TERM.toString()))
             .andExpect(jsonPath("$.paymentType").value(DEFAULT_PAYMENT_TYPE))
             .andExpect(jsonPath("$.priority").value(DEFAULT_PRIORITY))
             .andExpect(jsonPath("$.lockCount").value(DEFAULT_LOCK_COUNT))

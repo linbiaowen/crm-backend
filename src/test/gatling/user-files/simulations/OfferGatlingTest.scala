@@ -130,7 +130,7 @@ class OfferGatlingTest extends Simulation {
                 , "infoSharingAllowed":null
                 , "infoSharingOptions":"SAMPLE_TEXT"
                 , "offerPeriod":"0"
-                , "offerPeriodTerm":"SAMPLE_TEXT"
+                , "offerPeriodTerm":"DAYS"
                 , "paymentType":"SAMPLE_TEXT"
                 , "priority":"0"
                 , "lockCount":"0"

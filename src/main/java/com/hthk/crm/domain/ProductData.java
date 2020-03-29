@@ -12,6 +12,10 @@ import java.util.Objects;
 import java.math.BigDecimal;
 import java.time.Instant;
 
+import com.hthk.crm.domain.enumeration.SpecicalPackType;
+
+import com.hthk.crm.domain.enumeration.DataServiceType;
+
 /**
  * A ProductData.
  */
@@ -45,10 +49,10 @@ public class ProductData implements Serializable {
     private String dataSpeedCategory;
 
     @Field("specical_pack_type")
-    private String specicalPackType;
+    private SpecicalPackType specicalPackType;
 
     @Field("data_service_type")
-    private String dataServiceType;
+    private DataServiceType dataServiceType;
 
     @Field("roaming_regions")
     private String roamingRegions;
@@ -201,29 +205,29 @@ public class ProductData implements Serializable {
         this.dataSpeedCategory = dataSpeedCategory;
     }
 
-    public String getSpecicalPackType() {
+    public SpecicalPackType getSpecicalPackType() {
         return specicalPackType;
     }
 
-    public ProductData specicalPackType(String specicalPackType) {
+    public ProductData specicalPackType(SpecicalPackType specicalPackType) {
         this.specicalPackType = specicalPackType;
         return this;
     }
 
-    public void setSpecicalPackType(String specicalPackType) {
+    public void setSpecicalPackType(SpecicalPackType specicalPackType) {
         this.specicalPackType = specicalPackType;
     }
 
-    public String getDataServiceType() {
+    public DataServiceType getDataServiceType() {
         return dataServiceType;
     }
 
-    public ProductData dataServiceType(String dataServiceType) {
+    public ProductData dataServiceType(DataServiceType dataServiceType) {
         this.dataServiceType = dataServiceType;
         return this;
     }
 
-    public void setDataServiceType(String dataServiceType) {
+    public void setDataServiceType(DataServiceType dataServiceType) {
         this.dataServiceType = dataServiceType;
     }
 

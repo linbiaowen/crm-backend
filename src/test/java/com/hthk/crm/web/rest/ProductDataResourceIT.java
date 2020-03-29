@@ -26,6 +26,8 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.hthk.crm.domain.enumeration.SpecicalPackType;
+import com.hthk.crm.domain.enumeration.DataServiceType;
 /**
  * Integration tests for the {@link ProductDataResource} REST controller.
  */
@@ -53,11 +55,11 @@ public class ProductDataResourceIT {
     private static final String DEFAULT_DATA_SPEED_CATEGORY = "AAAAAAAAAA";
     private static final String UPDATED_DATA_SPEED_CATEGORY = "BBBBBBBBBB";
 
-    private static final String DEFAULT_SPECICAL_PACK_TYPE = "AAAAAAAAAA";
-    private static final String UPDATED_SPECICAL_PACK_TYPE = "BBBBBBBBBB";
+    private static final SpecicalPackType DEFAULT_SPECICAL_PACK_TYPE = SpecicalPackType.SOCIAL;
+    private static final SpecicalPackType UPDATED_SPECICAL_PACK_TYPE = SpecicalPackType.ENTERTAINMENT;
 
-    private static final String DEFAULT_DATA_SERVICE_TYPE = "AAAAAAAAAA";
-    private static final String UPDATED_DATA_SERVICE_TYPE = "BBBBBBBBBB";
+    private static final DataServiceType DEFAULT_DATA_SERVICE_TYPE = DataServiceType.LOCAL;
+    private static final DataServiceType UPDATED_DATA_SERVICE_TYPE = DataServiceType.ROAMING;
 
     private static final String DEFAULT_ROAMING_REGIONS = "AAAAAAAAAA";
     private static final String UPDATED_ROAMING_REGIONS = "BBBBBBBBBB";
@@ -416,8 +418,8 @@ public class ProductDataResourceIT {
             .andExpect(jsonPath("$.[*].volume").value(hasItem(DEFAULT_VOLUME)))
             .andExpect(jsonPath("$.[*].dataSlab").value(hasItem(DEFAULT_DATA_SLAB)))
             .andExpect(jsonPath("$.[*].dataSpeedCategory").value(hasItem(DEFAULT_DATA_SPEED_CATEGORY)))
-            .andExpect(jsonPath("$.[*].specicalPackType").value(hasItem(DEFAULT_SPECICAL_PACK_TYPE)))
-            .andExpect(jsonPath("$.[*].dataServiceType").value(hasItem(DEFAULT_DATA_SERVICE_TYPE)))
+            .andExpect(jsonPath("$.[*].specicalPackType").value(hasItem(DEFAULT_SPECICAL_PACK_TYPE.toString())))
+            .andExpect(jsonPath("$.[*].dataServiceType").value(hasItem(DEFAULT_DATA_SERVICE_TYPE.toString())))
             .andExpect(jsonPath("$.[*].roamingRegions").value(hasItem(DEFAULT_ROAMING_REGIONS)))
             .andExpect(jsonPath("$.[*].roamingCountries").value(hasItem(DEFAULT_ROAMING_COUNTRIES)))
             .andExpect(jsonPath("$.[*].roamingDayPassType").value(hasItem(DEFAULT_ROAMING_DAY_PASS_TYPE)))
@@ -454,8 +456,8 @@ public class ProductDataResourceIT {
             .andExpect(jsonPath("$.volume").value(DEFAULT_VOLUME))
             .andExpect(jsonPath("$.dataSlab").value(DEFAULT_DATA_SLAB))
             .andExpect(jsonPath("$.dataSpeedCategory").value(DEFAULT_DATA_SPEED_CATEGORY))
-            .andExpect(jsonPath("$.specicalPackType").value(DEFAULT_SPECICAL_PACK_TYPE))
-            .andExpect(jsonPath("$.dataServiceType").value(DEFAULT_DATA_SERVICE_TYPE))
+            .andExpect(jsonPath("$.specicalPackType").value(DEFAULT_SPECICAL_PACK_TYPE.toString()))
+            .andExpect(jsonPath("$.dataServiceType").value(DEFAULT_DATA_SERVICE_TYPE.toString()))
             .andExpect(jsonPath("$.roamingRegions").value(DEFAULT_ROAMING_REGIONS))
             .andExpect(jsonPath("$.roamingCountries").value(DEFAULT_ROAMING_COUNTRIES))
             .andExpect(jsonPath("$.roamingDayPassType").value(DEFAULT_ROAMING_DAY_PASS_TYPE))
