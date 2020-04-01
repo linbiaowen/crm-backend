@@ -667,7 +667,7 @@ entity OfferSalesChannel {
 }
 
 enum OfferType {
-	BASE, ADDON, VAS, BUNDLE
+	BASE, ADDON, VAS, TOPUP, BUNDLE
 }
 
 //to be removed.
@@ -1361,8 +1361,8 @@ service * with serviceClass
 // angularSuffix * with mySuffix
 
 //crm-frontend
-//skipClient *
-skipServer *
+skipClient *
+//skipServer *
 
 //jhipster import-jdl ../crm-backend/crm.jh --force
 
