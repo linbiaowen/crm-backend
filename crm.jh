@@ -206,6 +206,7 @@ entity CustAddress {
     address3 String
     address4 String
     address5 String
+    status RecordStatus
     lockCount Integer
     createdDate Instant required
     createdBy String required
@@ -213,6 +214,7 @@ entity CustAddress {
     lastUpdatedBy String required
     tenantId String required
 }
+
 
 entity SubscriptionGroup {
 	groupId Long required
