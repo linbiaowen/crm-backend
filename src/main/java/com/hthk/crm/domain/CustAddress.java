@@ -12,8 +12,6 @@ import java.io.Serializable;
 import java.util.Objects;
 import java.time.Instant;
 
-import com.hthk.crm.domain.enumeration.AccountType;
-
 import com.hthk.crm.domain.enumeration.AddressType;
 
 import com.hthk.crm.domain.enumeration.Language;
@@ -34,20 +32,21 @@ public class CustAddress implements Serializable {
     private Long addressId;
 
     @NotNull
-    @Field("account_id")
-    private String accountId;
-
-    @NotNull
-    @Field("account_type")
-    private AccountType accountType;
-
-    @NotNull
     @Field("address_type")
     private AddressType addressType;
 
     @NotNull
     @Field("address_lang")
     private Language addressLang;
+
+    @Field("locker_code")
+    private String lockerCode;
+
+    @Field("receiver_name")
+    private String receiverName;
+
+    @Field("receiver_contact_number")
+    private String receiverContactNumber;
 
     @NotNull
     @Field("formatted_address")
@@ -149,32 +148,6 @@ public class CustAddress implements Serializable {
         this.addressId = addressId;
     }
 
-    public String getAccountId() {
-        return accountId;
-    }
-
-    public CustAddress accountId(String accountId) {
-        this.accountId = accountId;
-        return this;
-    }
-
-    public void setAccountId(String accountId) {
-        this.accountId = accountId;
-    }
-
-    public AccountType getAccountType() {
-        return accountType;
-    }
-
-    public CustAddress accountType(AccountType accountType) {
-        this.accountType = accountType;
-        return this;
-    }
-
-    public void setAccountType(AccountType accountType) {
-        this.accountType = accountType;
-    }
-
     public AddressType getAddressType() {
         return addressType;
     }
@@ -199,6 +172,45 @@ public class CustAddress implements Serializable {
 
     public void setAddressLang(Language addressLang) {
         this.addressLang = addressLang;
+    }
+
+    public String getLockerCode() {
+        return lockerCode;
+    }
+
+    public CustAddress lockerCode(String lockerCode) {
+        this.lockerCode = lockerCode;
+        return this;
+    }
+
+    public void setLockerCode(String lockerCode) {
+        this.lockerCode = lockerCode;
+    }
+
+    public String getReceiverName() {
+        return receiverName;
+    }
+
+    public CustAddress receiverName(String receiverName) {
+        this.receiverName = receiverName;
+        return this;
+    }
+
+    public void setReceiverName(String receiverName) {
+        this.receiverName = receiverName;
+    }
+
+    public String getReceiverContactNumber() {
+        return receiverContactNumber;
+    }
+
+    public CustAddress receiverContactNumber(String receiverContactNumber) {
+        this.receiverContactNumber = receiverContactNumber;
+        return this;
+    }
+
+    public void setReceiverContactNumber(String receiverContactNumber) {
+        this.receiverContactNumber = receiverContactNumber;
     }
 
     public Boolean isFormattedAddress() {
@@ -509,10 +521,11 @@ public class CustAddress implements Serializable {
         return "CustAddress{" +
             "id=" + getId() +
             ", addressId=" + getAddressId() +
-            ", accountId='" + getAccountId() + "'" +
-            ", accountType='" + getAccountType() + "'" +
             ", addressType='" + getAddressType() + "'" +
             ", addressLang='" + getAddressLang() + "'" +
+            ", lockerCode='" + getLockerCode() + "'" +
+            ", receiverName='" + getReceiverName() + "'" +
+            ", receiverContactNumber='" + getReceiverContactNumber() + "'" +
             ", formattedAddress='" + isFormattedAddress() + "'" +
             ", room='" + getRoom() + "'" +
             ", floor='" + getFloor() + "'" +

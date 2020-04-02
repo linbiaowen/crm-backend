@@ -25,7 +25,6 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import com.hthk.crm.domain.enumeration.AccountType;
 import com.hthk.crm.domain.enumeration.AddressType;
 import com.hthk.crm.domain.enumeration.Language;
 /**
@@ -40,17 +39,20 @@ public class CustAddressResourceIT {
     private static final Long DEFAULT_ADDRESS_ID = 1L;
     private static final Long UPDATED_ADDRESS_ID = 2L;
 
-    private static final String DEFAULT_ACCOUNT_ID = "AAAAAAAAAA";
-    private static final String UPDATED_ACCOUNT_ID = "BBBBBBBBBB";
-
-    private static final AccountType DEFAULT_ACCOUNT_TYPE = AccountType.CUSTOMER;
-    private static final AccountType UPDATED_ACCOUNT_TYPE = AccountType.SUBSCRIPTION;
-
     private static final AddressType DEFAULT_ADDRESS_TYPE = AddressType.BILLING;
     private static final AddressType UPDATED_ADDRESS_TYPE = AddressType.DELIVERY;
 
     private static final Language DEFAULT_ADDRESS_LANG = Language.CHINESE;
     private static final Language UPDATED_ADDRESS_LANG = Language.ENGLISH;
+
+    private static final String DEFAULT_LOCKER_CODE = "AAAAAAAAAA";
+    private static final String UPDATED_LOCKER_CODE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_RECEIVER_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_RECEIVER_NAME = "BBBBBBBBBB";
+
+    private static final String DEFAULT_RECEIVER_CONTACT_NUMBER = "AAAAAAAAAA";
+    private static final String UPDATED_RECEIVER_CONTACT_NUMBER = "BBBBBBBBBB";
 
     private static final Boolean DEFAULT_FORMATTED_ADDRESS = false;
     private static final Boolean UPDATED_FORMATTED_ADDRESS = true;
@@ -129,10 +131,11 @@ public class CustAddressResourceIT {
     public static CustAddress createEntity() {
         CustAddress custAddress = new CustAddress()
             .addressId(DEFAULT_ADDRESS_ID)
-            .accountId(DEFAULT_ACCOUNT_ID)
-            .accountType(DEFAULT_ACCOUNT_TYPE)
             .addressType(DEFAULT_ADDRESS_TYPE)
             .addressLang(DEFAULT_ADDRESS_LANG)
+            .lockerCode(DEFAULT_LOCKER_CODE)
+            .receiverName(DEFAULT_RECEIVER_NAME)
+            .receiverContactNumber(DEFAULT_RECEIVER_CONTACT_NUMBER)
             .formattedAddress(DEFAULT_FORMATTED_ADDRESS)
             .room(DEFAULT_ROOM)
             .floor(DEFAULT_FLOOR)
@@ -163,10 +166,11 @@ public class CustAddressResourceIT {
     public static CustAddress createUpdatedEntity() {
         CustAddress custAddress = new CustAddress()
             .addressId(UPDATED_ADDRESS_ID)
-            .accountId(UPDATED_ACCOUNT_ID)
-            .accountType(UPDATED_ACCOUNT_TYPE)
             .addressType(UPDATED_ADDRESS_TYPE)
             .addressLang(UPDATED_ADDRESS_LANG)
+            .lockerCode(UPDATED_LOCKER_CODE)
+            .receiverName(UPDATED_RECEIVER_NAME)
+            .receiverContactNumber(UPDATED_RECEIVER_CONTACT_NUMBER)
             .formattedAddress(UPDATED_FORMATTED_ADDRESS)
             .room(UPDATED_ROOM)
             .floor(UPDATED_FLOOR)
@@ -210,10 +214,11 @@ public class CustAddressResourceIT {
         assertThat(custAddressList).hasSize(databaseSizeBeforeCreate + 1);
         CustAddress testCustAddress = custAddressList.get(custAddressList.size() - 1);
         assertThat(testCustAddress.getAddressId()).isEqualTo(DEFAULT_ADDRESS_ID);
-        assertThat(testCustAddress.getAccountId()).isEqualTo(DEFAULT_ACCOUNT_ID);
-        assertThat(testCustAddress.getAccountType()).isEqualTo(DEFAULT_ACCOUNT_TYPE);
         assertThat(testCustAddress.getAddressType()).isEqualTo(DEFAULT_ADDRESS_TYPE);
         assertThat(testCustAddress.getAddressLang()).isEqualTo(DEFAULT_ADDRESS_LANG);
+        assertThat(testCustAddress.getLockerCode()).isEqualTo(DEFAULT_LOCKER_CODE);
+        assertThat(testCustAddress.getReceiverName()).isEqualTo(DEFAULT_RECEIVER_NAME);
+        assertThat(testCustAddress.getReceiverContactNumber()).isEqualTo(DEFAULT_RECEIVER_CONTACT_NUMBER);
         assertThat(testCustAddress.isFormattedAddress()).isEqualTo(DEFAULT_FORMATTED_ADDRESS);
         assertThat(testCustAddress.getRoom()).isEqualTo(DEFAULT_ROOM);
         assertThat(testCustAddress.getFloor()).isEqualTo(DEFAULT_FLOOR);
@@ -259,40 +264,6 @@ public class CustAddressResourceIT {
         int databaseSizeBeforeTest = custAddressRepository.findAll().size();
         // set the field null
         custAddress.setAddressId(null);
-
-        // Create the CustAddress, which fails.
-
-        restCustAddressMockMvc.perform(post("/api/cust-addresses").with(csrf())
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(custAddress)))
-            .andExpect(status().isBadRequest());
-
-        List<CustAddress> custAddressList = custAddressRepository.findAll();
-        assertThat(custAddressList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    public void checkAccountIdIsRequired() throws Exception {
-        int databaseSizeBeforeTest = custAddressRepository.findAll().size();
-        // set the field null
-        custAddress.setAccountId(null);
-
-        // Create the CustAddress, which fails.
-
-        restCustAddressMockMvc.perform(post("/api/cust-addresses").with(csrf())
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(custAddress)))
-            .andExpect(status().isBadRequest());
-
-        List<CustAddress> custAddressList = custAddressRepository.findAll();
-        assertThat(custAddressList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    public void checkAccountTypeIsRequired() throws Exception {
-        int databaseSizeBeforeTest = custAddressRepository.findAll().size();
-        // set the field null
-        custAddress.setAccountType(null);
 
         // Create the CustAddress, which fails.
 
@@ -452,10 +423,11 @@ public class CustAddressResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(custAddress.getId())))
             .andExpect(jsonPath("$.[*].addressId").value(hasItem(DEFAULT_ADDRESS_ID.intValue())))
-            .andExpect(jsonPath("$.[*].accountId").value(hasItem(DEFAULT_ACCOUNT_ID)))
-            .andExpect(jsonPath("$.[*].accountType").value(hasItem(DEFAULT_ACCOUNT_TYPE.toString())))
             .andExpect(jsonPath("$.[*].addressType").value(hasItem(DEFAULT_ADDRESS_TYPE.toString())))
             .andExpect(jsonPath("$.[*].addressLang").value(hasItem(DEFAULT_ADDRESS_LANG.toString())))
+            .andExpect(jsonPath("$.[*].lockerCode").value(hasItem(DEFAULT_LOCKER_CODE)))
+            .andExpect(jsonPath("$.[*].receiverName").value(hasItem(DEFAULT_RECEIVER_NAME)))
+            .andExpect(jsonPath("$.[*].receiverContactNumber").value(hasItem(DEFAULT_RECEIVER_CONTACT_NUMBER)))
             .andExpect(jsonPath("$.[*].formattedAddress").value(hasItem(DEFAULT_FORMATTED_ADDRESS.booleanValue())))
             .andExpect(jsonPath("$.[*].room").value(hasItem(DEFAULT_ROOM)))
             .andExpect(jsonPath("$.[*].floor").value(hasItem(DEFAULT_FLOOR)))
@@ -488,10 +460,11 @@ public class CustAddressResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(custAddress.getId()))
             .andExpect(jsonPath("$.addressId").value(DEFAULT_ADDRESS_ID.intValue()))
-            .andExpect(jsonPath("$.accountId").value(DEFAULT_ACCOUNT_ID))
-            .andExpect(jsonPath("$.accountType").value(DEFAULT_ACCOUNT_TYPE.toString()))
             .andExpect(jsonPath("$.addressType").value(DEFAULT_ADDRESS_TYPE.toString()))
             .andExpect(jsonPath("$.addressLang").value(DEFAULT_ADDRESS_LANG.toString()))
+            .andExpect(jsonPath("$.lockerCode").value(DEFAULT_LOCKER_CODE))
+            .andExpect(jsonPath("$.receiverName").value(DEFAULT_RECEIVER_NAME))
+            .andExpect(jsonPath("$.receiverContactNumber").value(DEFAULT_RECEIVER_CONTACT_NUMBER))
             .andExpect(jsonPath("$.formattedAddress").value(DEFAULT_FORMATTED_ADDRESS.booleanValue()))
             .andExpect(jsonPath("$.room").value(DEFAULT_ROOM))
             .andExpect(jsonPath("$.floor").value(DEFAULT_FLOOR))
@@ -531,10 +504,11 @@ public class CustAddressResourceIT {
         CustAddress updatedCustAddress = custAddressRepository.findById(custAddress.getId()).get();
         updatedCustAddress
             .addressId(UPDATED_ADDRESS_ID)
-            .accountId(UPDATED_ACCOUNT_ID)
-            .accountType(UPDATED_ACCOUNT_TYPE)
             .addressType(UPDATED_ADDRESS_TYPE)
             .addressLang(UPDATED_ADDRESS_LANG)
+            .lockerCode(UPDATED_LOCKER_CODE)
+            .receiverName(UPDATED_RECEIVER_NAME)
+            .receiverContactNumber(UPDATED_RECEIVER_CONTACT_NUMBER)
             .formattedAddress(UPDATED_FORMATTED_ADDRESS)
             .room(UPDATED_ROOM)
             .floor(UPDATED_FLOOR)
@@ -565,10 +539,11 @@ public class CustAddressResourceIT {
         assertThat(custAddressList).hasSize(databaseSizeBeforeUpdate);
         CustAddress testCustAddress = custAddressList.get(custAddressList.size() - 1);
         assertThat(testCustAddress.getAddressId()).isEqualTo(UPDATED_ADDRESS_ID);
-        assertThat(testCustAddress.getAccountId()).isEqualTo(UPDATED_ACCOUNT_ID);
-        assertThat(testCustAddress.getAccountType()).isEqualTo(UPDATED_ACCOUNT_TYPE);
         assertThat(testCustAddress.getAddressType()).isEqualTo(UPDATED_ADDRESS_TYPE);
         assertThat(testCustAddress.getAddressLang()).isEqualTo(UPDATED_ADDRESS_LANG);
+        assertThat(testCustAddress.getLockerCode()).isEqualTo(UPDATED_LOCKER_CODE);
+        assertThat(testCustAddress.getReceiverName()).isEqualTo(UPDATED_RECEIVER_NAME);
+        assertThat(testCustAddress.getReceiverContactNumber()).isEqualTo(UPDATED_RECEIVER_CONTACT_NUMBER);
         assertThat(testCustAddress.isFormattedAddress()).isEqualTo(UPDATED_FORMATTED_ADDRESS);
         assertThat(testCustAddress.getRoom()).isEqualTo(UPDATED_ROOM);
         assertThat(testCustAddress.getFloor()).isEqualTo(UPDATED_FLOOR);

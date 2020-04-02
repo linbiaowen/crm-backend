@@ -102,10 +102,11 @@ class CustAddressGatlingTest extends Simulation {
             .body(StringBody("""{
                 "id":null
                 , "addressId":null
-                , "accountId":"SAMPLE_TEXT"
-                , "accountType":"CUSTOMER"
                 , "addressType":"BILLING"
                 , "addressLang":"CHINESE"
+                , "lockerCode":"SAMPLE_TEXT"
+                , "receiverName":"SAMPLE_TEXT"
+                , "receiverContactNumber":"SAMPLE_TEXT"
                 , "formattedAddress":null
                 , "room":"SAMPLE_TEXT"
                 , "floor":"SAMPLE_TEXT"

@@ -188,10 +188,11 @@ enum AddressType {
 }
 entity CustAddress {
 	addressId Long required
-    accountId String required
-    accountType AccountType required
     addressType AddressType required
     addressLang Language required
+    lockerCode String
+    receiverName String
+    receiverContactNumber String
     formattedAddress Boolean required
     room String
     floor String
@@ -1361,8 +1362,8 @@ service * with serviceClass
 // angularSuffix * with mySuffix
 
 //crm-frontend
-skipClient *
-//skipServer *
+//skipClient *
+skipServer *
 
 //jhipster import-jdl ../crm-backend/crm.jh --force
 
